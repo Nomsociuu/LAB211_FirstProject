@@ -5,12 +5,12 @@ package Model;
 public class Model {
 
     private int size;
-    private int value;
+    private int[] value;
 
     public Model() {
     }
 
-    public Model(int size, int value) {
+    public Model(int size, int[] value) {
         this.size = size;
         this.value = value;
     }
@@ -23,11 +23,11 @@ public class Model {
         this.size = size;
     }
 
-    public int getValue() {
+    public int[] getValue() {
         return value;
     }
 
-    public void setValue(int value) {
+    public void setValue(int[] value) {
         this.value = value;
     }
     

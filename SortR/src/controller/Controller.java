@@ -2,6 +2,7 @@ package controller;
 
 import Model.Model;
 import View.View;
+import java.util.List;
 import java.util.Scanner;
 
 public class Controller {
@@ -9,6 +10,8 @@ public class Controller {
     private final Model model;
     private final SortPart sorting;
     private final View view;
+
+    private List<Model> mode;
 
     public Controller(Model model, View view, SortPart sorting) {
         this.model = model;
@@ -30,26 +33,31 @@ public class Controller {
                     view.displaySortMenu();
                     System.out.print("Enter your choice (0 to exit): ");
                     choice = scanner.nextInt();
-                    switch(choice){
-                        case 1: BubbleSort();
-                                break;
-                                
-                        case 2: QuickSort();
-                                break;
+                    switch (choice) {
+                        case 1:
+                            BubbleSort();
+                            break;
+
+                        case 2:
+                            QuickSort();
+                            break;
                     }
                     break;
                 case 2:
                     view.displaySearchMenu();
                     System.out.print("Enter your choice (0 to exit): ");
                     choice = scanner.nextInt();
-                    switch(choice){
-                        case 1: BubbleSort();
-                                break;
-                                
-                        case 2: QuickSort();
-                                break;
+                    switch (choice) {
+                        case 1:
+                            BubbleSort();
+                            break;
+
+                        case 2:
+                            QuickSort();
+                            break;
                     }
                     break;
+
                 case 0:
                     System.out.println("Exiting program....");
                     break;
@@ -60,45 +68,61 @@ public class Controller {
 
     }
 
-
-    private void BubbleSort() {
+    private void EnterArray() {
         Scanner scanner = new Scanner(System.in);
+        int value;
 
         System.out.print("Enter the number of elements in the array: ");
         int arraySize = scanner.nextInt();
+        int[] temp = new int[arraySize]; // Initialize the array
 
-        System.out.println("Unsorted array : ");
-        int[] array = sorting.generateRandomArray(arraySize);
+        System.out.println("Enter the value for each position: ");
+        for (int i = 0; i < arraySize; i++) {
+            
+            value = scanner.nextInt();
+            temp[i] = value;
+        }
+        System.out.println();
 
-        view.displayArray(array);
+        model.setSize(arraySize);
+        model.setValue(temp);
+        view.displayArray(model.getValue()); // Assuming there is a method getArray() in your model class
+    }
 
-        int n = array.length;
-        boolean swapped;
+    private void BubbleSort() {
+        EnterArray();
 
-        do {
-            swapped = false;
-            for (int i = 1; i < n; i++) {
-                if (array[i - 1] > array[i]) {
-                    int temp = array[i - 1];
-                    array[i - 1] = array[i];
-                    array[i] = temp;
-                    swapped = true;
-                }
-            }
-        } while (swapped);
-
-        System.out.println("Sorted Array (Bubble Sort):");
-        view.displayArray(array);
+//        int a[];
+//        int size = model.getSize();
+//        System.out.println("Unsorted array : ");
+//        int[] array = sorting.generateRandomArray(model.getSize());
+//
+//        view.displayArray(array);
+//
+//        int n = array.length;
+//        boolean swapped;
+//
+//        do {
+//            swapped = false;
+//            for (int i = 1; i < n; i++) {
+//                if (array[i - 1] > array[i]) {
+//                    int temp = array[i - 1];
+//                    array[i - 1] = array[i];
+//                    array[i] = temp;
+//                    swapped = true;
+//                }
+//            }
+//        } while (swapped);
+//
+//        System.out.println("Sorted Array (Bubble Sort):");
+//        view.displayArray(array);
     }
 
     private void QuickSort() {
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.print("Enter the number of elements in the array: ");
-        int arraySize = scanner.nextInt();
+        EnterArray();
 
         System.out.println("Unsorted array : ");
-        int[] array = sorting.generateRandomArray(arraySize);
+        int[] array = sorting.generateRandomArray(model.getSize());
 
         view.displayArray(array);
 
@@ -107,39 +131,34 @@ public class Controller {
         System.out.println("Sorted Array (Quick Sort):");
         view.displayArray(array);
     }
-    
 
-        public static int binarySearch(int[] arr, int target) {
-            int m = 0;
-            int n = arr.length - 1;
+    public static int binarySearch(int[] arr, int target) {
+        int m = 0;
+        int n = arr.length - 1;
 
-            while (m <= n) {
-                int mid = m + (n - m) / 2;
+        while (m <= n) {
+            int mid = m + (n - m) / 2;
 
-                if (arr[mid] == target) {
-                    return mid;
-                } else if (arr[mid] < target) {
-                    m = mid + 1;
-                } else {
-                    n = mid - 1;
-                }
+            if (arr[mid] == target) {
+                return mid;
+            } else if (arr[mid] < target) {
+                m = mid + 1;
+            } else {
+                n = mid - 1;
             }
-
-            return -1;
         }
-    
 
-    
+        return -1;
+    }
 
-        public static int linearSearch(int[] arr, int target) {
-            for (int i = 0; i < arr.length; i++) {
-                if (arr[i] == target) {
-                    return i;
-                }
+    public static int linearSearch(int[] arr, int target) {
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] == target) {
+                return i;
             }
-            return -1;
         }
-    
+        return -1;
+    }
 
     public static void main(String[] args) {
         Model model = new Model();
