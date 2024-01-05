@@ -49,8 +49,7 @@ public class Controller {
                     choice = scanner.nextInt();
                     switch (choice) {
                         case 1:
-                            BubbleSort();
-                            break;
+                            binarySearch();
 
                         case 2:
                             QuickSort();
@@ -78,11 +77,11 @@ public class Controller {
 
         System.out.println("Enter the value for each position: ");
         for (int i = 0; i < arraySize; i++) {
-            
+            System.out.print("Value " + i + " : ");
             value = scanner.nextInt();
             temp[i] = value;
         }
-        System.out.println();
+        System.out.println("Unsorted array: ");
 
         model.setSize(arraySize);
         model.setValue(temp);
@@ -92,39 +91,32 @@ public class Controller {
     private void BubbleSort() {
         EnterArray();
 
-//        int a[];
-//        int size = model.getSize();
-//        System.out.println("Unsorted array : ");
-//        int[] array = sorting.generateRandomArray(model.getSize());
-//
-//        view.displayArray(array);
-//
-//        int n = array.length;
-//        boolean swapped;
-//
-//        do {
-//            swapped = false;
-//            for (int i = 1; i < n; i++) {
-//                if (array[i - 1] > array[i]) {
-//                    int temp = array[i - 1];
-//                    array[i - 1] = array[i];
-//                    array[i] = temp;
-//                    swapped = true;
-//                }
-//            }
-//        } while (swapped);
-//
-//        System.out.println("Sorted Array (Bubble Sort):");
-//        view.displayArray(array);
+        int[] array = model.getValue();
+
+        int n = array.length;
+        boolean swapped;
+
+        do {
+            swapped = false;
+            for (int i = 1; i < n; i++) {
+                if (array[i - 1] > array[i]) {
+                    int temp = array[i - 1];
+                    array[i - 1] = array[i];
+                    array[i] = temp;
+                    swapped = true;
+                }
+            }
+        } while (swapped);
+
+        System.out.println("Sorted Array (Bubble Sort):");
+        view.displayArray(array);
     }
 
     private void QuickSort() {
         EnterArray();
 
-        System.out.println("Unsorted array : ");
-        int[] array = sorting.generateRandomArray(model.getSize());
-
-        view.displayArray(array);
+        int[] array = model.getValue();
+        
 
         sorting.quickSort(array, 0, array.length - 1);
 
@@ -132,16 +124,24 @@ public class Controller {
         view.displayArray(array);
     }
 
-    public static int binarySearch(int[] arr, int target) {
+    public int binarySearch() {
+        Scanner sc = new Scanner(System.in);
+        BubbleSort();
+        
+        System.out.print("Enter the number you want to search: ");
+        int num = sc.nextInt();
+        int[] arr = model.getValue();
+       
+        
         int m = 0;
         int n = arr.length - 1;
 
         while (m <= n) {
             int mid = m + (n - m) / 2;
 
-            if (arr[mid] == target) {
+            if (arr[mid] == num) {
                 return mid;
-            } else if (arr[mid] < target) {
+            } else if (arr[mid] < num) {
                 m = mid + 1;
             } else {
                 n = mid - 1;

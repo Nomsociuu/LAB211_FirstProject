@@ -24,7 +24,7 @@ public class View {
         System.out.println("---------------------");
         System.out.println("Searching Program Menu:");
         System.out.println("1.Linear Search");
-        System.out.println("2.Binary Search");
+        System.out.println("2.Binary Sear2ch");
         System.out.println("0. Exit");
         System.out.println("---------------------");
     }
