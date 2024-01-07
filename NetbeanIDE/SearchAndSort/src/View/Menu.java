@@ -25,6 +25,7 @@ public abstract class Menu  {
 
     public int getChoice() {
         Scanner scanner = new Scanner(System.in);
+        System.out.println("---------------------");
         System.out.print("Enter selection: ");
         int choice = scanner.nextInt();
         return choice;

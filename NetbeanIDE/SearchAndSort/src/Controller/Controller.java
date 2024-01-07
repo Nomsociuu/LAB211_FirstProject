@@ -1,36 +1,13 @@
 package Controller;
 
-import Model.*;
 import java.util.*;
 
 public class Controller {
 
     static final Scanner scan = new Scanner(System.in);
-    private List<Model> models;
-
-    public Controller() {
-
-        models = new ArrayList<>();
-    }
-
-    public int arraySize() {
-        int size;
-        do {
-            System.out.print("Enter the size of the array: ");
-            while (!scan.hasNextInt()) {
-                System.out.println("Invalid input. Please enter a positive integer number.");
-                scan.next();
-            }
-            size = scan.nextInt();
-            if (size <= 0) {
-                System.out.println("Invalid input. Please enter a positive integer number.");
-            }
-        } while (size <= 0);
-        return size;
-    }
 
     public int[] arrayIndex(int size) {
-        System.out.println("Enter array index: ");
+        System.out.println("_____Enter array index_____");
         int array[] = new int[size];
 
         for (int i = 0; i < size; i++) {
@@ -44,7 +21,22 @@ public class Controller {
         System.out.println("Unsorted array: " + Arrays.toString(array));
         return array;
     }
+    
+    public int getPositiveNumber(String prompt) {
+        int number;
+        do {
+            System.out.print(prompt);
+            while (!scan.hasNextInt()) {
+                System.out.println("Invalid input. Please enter a positive decimal number.");
+                System.out.print(prompt);
+                scan.next(); 
+            }
+            number = scan.nextInt();
+        } while (number <= 0);
 
+        return number;
+    }
+//Sort
     public void quickSort(int[] array, int low, int high) {
         if (low < high) {
             int pivotIndex = partition(array, low, high);
@@ -78,7 +70,7 @@ public class Controller {
         return i + 1;
     }
 
-    public static void BubbleSort(int array[]) {
+    public void BubbleSort(int array[]) {
         int n = array.length;
         boolean swap;
 
@@ -98,6 +90,43 @@ public class Controller {
                 System.out.println(Arrays.toString(array));
                 break;
             }
+        }
+    }
+//Search
+    public int binarySearch(int[] arr, int value) {
+        int m = 0;
+        int n = arr.length - 1;
+
+        while (m <= n) {
+            int mid = m + (n - m) / 2;
+
+            if (arr[mid] == value) {
+                return mid;
+            } else if (arr[mid] < value) {
+                m = mid + 1;
+            } else {
+                n = mid - 1;
+            }
+        }
+
+        return -1;
+    }
+
+    public int linearSearch(int[] arr, int value) {
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] == value) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public void displaySearchResult(int result, int value) {
+        System.out.println("Search number: " + value);
+        if (result != -1) {
+            System.out.println("The index of value " + value + " in the array is: " + result);
+        } else {
+            System.out.println("Value " + value + " is not found in the array.");
         }
     }
 

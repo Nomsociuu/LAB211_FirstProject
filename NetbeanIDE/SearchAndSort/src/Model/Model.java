@@ -1,9 +1,8 @@
 package Model;
 
-import java.util.*;
 
 public class Model {
-    //private int size;
+    private int size;
     private int[] array;
 
     public Model() {
@@ -13,13 +12,13 @@ public class Model {
         this.array = array;
     }
 
-    // public int getSize() {
-    //     return size;
-    // }
+     public int getSize() {
+         return size;
+     }
 
-    // public void setSize(int size) {
-    //     this.size = size;
-    // }
+     public void setSize(int size) {
+         this.size = size;
+     }
 
     public int[] getArray() {
         return array;

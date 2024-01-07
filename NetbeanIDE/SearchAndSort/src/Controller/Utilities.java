@@ -7,11 +7,14 @@ import java.util.*;
 public class Utilities extends Menu {
 
     private final Scanner sc = new Scanner(System.in);
+
     private final Model model = new Model();
-    Controller control = new Controller();
+    private final Controller control = new Controller();
 
     public Utilities() {
-        super("---------------------\n" + "Sort and Search Utilities", new String[]{
+        super("""
+              ---------------------
+              Sort and Search Utilities""", new String[]{
             "Input Array", "Sort", "Search", "Exit"
         });
 
@@ -21,9 +24,9 @@ public class Utilities extends Menu {
     public void execute(int choice) {
         switch (choice) {
             case 1:
-                int arrsize = control.arraySize();
-                int unsortarr[] = control.arrayIndex(arrsize);
-                model.setArray(unsortarr);
+                model.setSize(control.getPositiveNumber("Enter array size: "));
+                int arr[] = control.arrayIndex(model.getSize());
+                model.setArray(arr);
                 break;
             case 2:
                 DisplaySortMenu();
@@ -44,28 +47,32 @@ public class Utilities extends Menu {
 
     public void DisplaySortMenu() {
 
-        int schoice = 0;
+        int choice = 0;
         do {
-            System.out.println("---------------");
-            System.out.println("1. Bubble sort");
-            System.out.println("2. Quick sort");
-            System.out.println("3. Back");
-            System.out.print("\nEnter choice: ");
-            schoice = sc.nextInt();
-            switch (schoice) {
+            System.out.print("""
+                               ---------------------
+                               Sort Menu: 
+                               1. Bubble sort
+                               2. Quick sort
+                               3. Back
+                               ---------------------
+                               Enter choice:  """);
+            choice = sc.nextInt();
+            switch (choice) {
                 case 1:
-                    int arrbs[] = model.getArray();
-                    if (arrbs != null) {
-                        control.BubbleSort(arrbs);
+                    int arrBs[] = model.getArray();
+                    if (arrBs != null) {
+                        control.BubbleSort(arrBs);
                     } else {
                         System.out.print("Empty array! Please use function \"Input Array\" first.\n");
                         return;
                     }
+
                     break;
                 case 2:
-                    int arrqs[] = model.getArray();
-                    if (arrqs != null) {
-                        control.quickSort(arrqs, 0, arrqs.length - 1);
+                    int arrQs[] = model.getArray();
+                    if (arrQs != null) {
+                        control.quickSort(arrQs, 0, arrQs.length - 1);
                     } else {
                         System.out.print("Empty array! Please use function \"Input Array\" first.\n");
                         return;
@@ -74,38 +81,43 @@ public class Utilities extends Menu {
                 case 3:
                     return;
             }
-        } while (schoice > 0 || schoice < 4);
+        } while (choice > 0 || choice < 4);
     }
 
     public void DisplaySearcMenu() {
         int choice;
         do {
-            System.out.println("1. Linear seach");
-            System.out.println("2. Binary search");
-            System.out.println("3. Back");
-            System.out.print("Enter your choice: ");
+            System.out.print("""
+                               ---------------------
+                               Search Menu: 
+                               1. Linear Search
+                               2. Binary Search
+                               3. Back
+                               ---------------------
+                               Enter choice:  """);
             choice = sc.nextInt();
             switch (choice) {
                 case 1:
-                    int arr[] = model.getArray();
-                    if (arr != null) {
-                        int searchNumber = getPositiveNumber("Enter the number to search: ");
-                        int searchResult = linearSearch(arr, searchNumber);
-                        System.out.println("Linear Search: ");
-                        displaySearchResult(searchResult, searchNumber);
+                    int arrLs[] = model.getArray();
+                    if (arrLs != null) {
+                        int searchNumber = control.getPositiveNumber("Enter the number to search: ");
+                        int searchResult = control.linearSearch(arrLs, searchNumber);
+                        System.out.println("Unsorted array: " + Arrays.toString(arrLs));
+                        System.out.println("____Linear Search:____");
+                        control.displaySearchResult(searchResult, searchNumber);
                     } else {
                         System.out.print("Empty array! Please use function \"Input Array\" first.\n");
                         return;
                     }
                     break;
                 case 2:
-                    int arrb[] = model.getArray();
-                    if (arrb != null) {
-                        Arrays.sort(arrb);
-                        int searchNumber = getPositiveNumber("Enter the number to search: ");
-                        int searchResult = binarySearch(arrb, searchNumber);
-                        System.out.println("Binary Search: ");
-                        displaySearchResult(searchResult, searchNumber);
+                    int arrBs[] = model.getArray();
+                    if (arrBs != null) {
+                        Arrays.sort(arrBs);
+                        int searchNumber = control.getPositiveNumber("Enter the number to search: ");
+                        int searchResult = control.binarySearch(arrBs, searchNumber);
+                        System.out.println("____Binary Search____");
+                        control.displaySearchResult(searchResult, searchNumber);
                     } else {
                         System.out.print("Empty array! Please use function \"Input Array\" first.\n");
                         return;
@@ -118,55 +130,4 @@ public class Utilities extends Menu {
         } while (choice > 0 || choice < 4);
     }
 
-    private int getPositiveNumber(String prompt) {
-        int number;
-        do {
-            System.out.print(prompt);
-            while (!sc.hasNextInt()) {
-                System.out.println("Invalid input. Please enter a positive decimal number.");
-                System.out.print(prompt);
-                sc.next(); // consume non-integer input
-            }
-            number = sc.nextInt();
-        } while (number <= 0);
-
-        return number;
-    }
-
-    private int binarySearch(int[] arr, int value) {
-        int m = 0;
-        int n = arr.length - 1;
-
-        while (m <= n) {
-            int mid = m + (n - m) / 2;
-
-            if (arr[mid] == value) {
-                return mid;
-            } else if (arr[mid] < value) {
-                m = mid + 1;
-            } else {
-                n = mid - 1;
-            }
-        }
-
-        return -1;
-    }
-
-    private int linearSearch(int[] arr, int value) {
-        for (int i = 0; i < arr.length; i++) {
-            if (arr[i] == value) {
-                return i;
-            }
-        }
-        return -1;
-    }
-
-    private void displaySearchResult(int result, int value) {
-        System.out.println("Search number: " + value);
-        if (result != -1) {
-            System.out.println("The index of value " + value + " in the array is: " + result);
-        } else {
-            System.out.println("Value " + value + " is not found in the array.");
-        }
-    }
 }
