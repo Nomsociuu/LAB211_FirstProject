@@ -1,12 +1,16 @@
 package Model;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Scanner;
 
 public class Validate {
 
     static final Scanner scanner = new Scanner(System.in);
 
-    public static String getBirthDate() {
+    public String getBirthDate() {
         String birthDate;
         do {
             System.out.print("Enter Birth Date (yyyy): ");
@@ -26,7 +30,7 @@ public class Validate {
         }
     }
 
-    public static String getPhone() {
+    public String getPhone() {
         String phone;
         do {
             System.out.print("Enter Phone (minimum 10 digits): ");
@@ -35,7 +39,7 @@ public class Validate {
         return phone;
     }
 
-    public static String getEmail() {
+    public String getEmail() {
         String email;
         do {
             System.out.print("Enter Email: ");
@@ -58,7 +62,7 @@ public class Validate {
 //Hàm nhập 1 String không giới hạn , kí tự khác số
     public String getUnliString(String prompt) {
         System.out.print(prompt);
-        String input = scanner.nextLine();
+        String input = scanner.next();
         while (!input.matches("[a-zA-Z\\s]+")) {
             System.out.println("Invalid input. Enter character only!!");
             System.out.print(prompt);
@@ -67,33 +71,17 @@ public class Validate {
         return input;
     }
 
-    
 //Hàm nhập số : min < num < max; 0 < num < 40 ; 0 < num < 4
     public int getNumberInRange(String prompt, int min, int max) {
         int number;
         do {
-
+            System.out.print(prompt);
             while (!scanner.hasNextInt()) {
                 System.out.println("Invalid input. Please enter a valid input.");
-                scanner.next();
             }
             number = scanner.nextInt();
         } while (number < min || number >= max);
         return number;
     }
-    
-//ID : Str, gồm 3 số
-    public String getValidID(String prompt) {
-        System.out.print(prompt);
-        String input = scanner.nextLine();
-
-        while (!input.matches("DE\\d{3}")) {
-            System.out.println("Invalid ID format. Please enter in the format DE###.");
-            System.out.print(prompt);
-            input = scanner.nextLine();
-        }
-
-        return input;
-    }
-
+  
 }

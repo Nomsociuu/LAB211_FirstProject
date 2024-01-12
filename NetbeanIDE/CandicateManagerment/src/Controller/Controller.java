@@ -51,20 +51,21 @@ public class Controller {
         do {
             System.out.println("____Creating Experience Candidate____");
 
-            String candidateId = vali.getValidID("Enter ID (format: DE###): ");
+            System.out.print("Enter ID: ");
+            String candidateId = sc.next();
             String firstname = vali.getUnliString("Enter First Name: ");
             String lastname = vali.getUnliString("Enter Last Name: ");
             String address = vali.getUnliString("Enter Address: ");
 
-            int expInYear = vali.getNumberInRange("Enter Year of Experience",0,100);
+            int expInYear = vali.getNumberInRange("Enter Year of Experience: ",0,100);
             String proSkill = vali.getUnliString("Enter Professional Skill: ");
 
             candidates.add(new ExperienceCandidate(candidateId,
                     firstname, lastname,
-                    Validate.getBirthDate(),
+                    vali.getBirthDate(),
                     address,
-                    Validate.getPhone(),
-                    Validate.getEmail(),
+                    vali.getPhone(),
+                    vali.getEmail(),
                     expInYear,
                     proSkill));
 
@@ -76,7 +77,8 @@ public class Controller {
         do {
             System.out.println("____Creating Fresher Candidate____");
 
-            String candidateId = vali.getValidID("Enter ID (format: DE###): ");
+            System.out.print("Enter ID: ");
+            String candidateId = sc.next();
             String firstname = vali.getUnliString("Enter First Name: ");
             String lastname = vali.getUnliString("Enter Last Name: ");
             String address = vali.getUnliString("Enter Address: ");
@@ -89,10 +91,10 @@ public class Controller {
 
             candidates.add(new FresherCandidate(candidateId,
                     firstname, lastname,
-                    Validate.getBirthDate(),
+                    vali.getBirthDate(),
                     address,
-                    Validate.getPhone(),
-                    Validate.getEmail(),
+                    vali.getPhone(),
+                    vali.getEmail(),
                     graduationDate,
                     graduationRank,
                     education));
@@ -104,22 +106,22 @@ public class Controller {
         do {
             System.out.println("____Creating Intern Candidate____");
 
-            String candidateId = vali.getValidID("Enter ID (format: DE###): ");
+            System.out.print("Enter ID: ");
+            String candidateId = sc.next();
             String firstname = vali.getUnliString("Enter First Name: ");
             String lastname = vali.getUnliString("Enter Last Name: ");
             String address = vali.getUnliString("Enter Address: ");
 
             String majors = vali.getUnliString("Enter Majors: ");
-            System.out.print("Enter Semester: ");
             int semester = vali.getNumberInRange("Enter Semester: ",0,4);
             String universityName = vali.getUnliString("Enter University Name: ");
 
             candidates.add(new InternCandidate(candidateId,
                     firstname, lastname,
-                    Validate.getBirthDate(),
+                    vali.getBirthDate(),
                     address,
-                    Validate.getPhone(),
-                    Validate.getEmail(),
+                    vali.getPhone(),
+                    vali.getEmail(),
                     majors,
                     semester,
                     universityName));
