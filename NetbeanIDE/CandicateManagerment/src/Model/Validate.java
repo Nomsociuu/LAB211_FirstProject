@@ -4,17 +4,7 @@ package Model;
 import java.util.Scanner;
 
 public class Validate {
-    static final Scanner scanner = new Scanner(System.in);
-    
-        public static String getFirstName() {
-        System.out.print("Enter First Name: ");
-        return scanner.next();
-    }
-
-    public static String getLastName() {
-        System.out.print("Enter Last Name: ");
-        return scanner.next();
-    }
+    static final Scanner scanner = new Scanner(System.in); 
 
     public static String getBirthDate() {
         String birthDate;
@@ -36,10 +26,6 @@ public class Validate {
         }
     }
 
-    public static String getAddress() {
-        System.out.print("Enter Address: ");
-        return scanner.next();
-    }
 
     public static String getPhone() {
         String phone;

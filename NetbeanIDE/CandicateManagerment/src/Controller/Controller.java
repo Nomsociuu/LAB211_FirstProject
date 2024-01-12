@@ -8,14 +8,15 @@ import Model.InternCandidate;
 import Model.Validate;
 import View.View;
 import static View.View.getUserChoice;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Controller {
 
     private ArrayList<Candidate> candidates = new ArrayList<>();
+    ExperienceCandidate expca = new ExperienceCandidate();
     static final Scanner sc = new Scanner(System.in);
-  
 
     public void run() {
         while (true) {
@@ -55,6 +56,12 @@ public class Controller {
 
             System.out.print("Enter Candidate ID: ");
             String candidateId = sc.next();
+            System.out.print("Enter First Name: ");
+            String firstname = sc.next();
+            System.out.print("Enter Last Name: ");
+            String lastname = sc.next();
+            System.out.print("Enter Address: ");
+            String address = sc.next();
 
             System.out.print("Enter Year of Experience: ");
             int expInYear = getUserChoice(0, 100);
@@ -62,10 +69,9 @@ public class Controller {
             String proSkill = sc.next();
 
             candidates.add(new ExperienceCandidate(candidateId,
-                    Validate.getFirstName(),
-                    Validate.getLastName(),
+                    firstname,lastname,
                     Validate.getBirthDate(),
-                    Validate.getAddress(),
+                    address,
                     Validate.getPhone(),
                     Validate.getEmail(),
                     expInYear,
@@ -81,6 +87,12 @@ public class Controller {
 
             System.out.print("Enter Candidate ID: ");
             String candidateId = sc.next();
+            System.out.print("Enter First Name: ");
+            String firstname = sc.next();
+            System.out.print("Enter Last Name: ");
+            String lastname = sc.next();
+            System.out.print("Enter Address: ");
+            String address = sc.next();
 
             System.out.print("Enter Graduation Date: ");
             String graduationDate = sc.next();
@@ -90,10 +102,9 @@ public class Controller {
             String education = sc.next();
 
             candidates.add(new FresherCandidate(candidateId,
-                    Validate.getFirstName(),
-                    Validate.getLastName(),
+                    firstname,lastname,
                     Validate.getBirthDate(),
-                    Validate.getAddress(),
+                    address,
                     Validate.getPhone(),
                     Validate.getEmail(),
                     graduationDate,
@@ -109,6 +120,12 @@ public class Controller {
 
             System.out.print("Enter Candidate ID: ");
             String candidateId = sc.next();
+            System.out.print("Enter First Name: ");
+            String firstname = sc.next();
+            System.out.print("Enter Last Name: ");
+            String lastname = sc.next();
+            System.out.print("Enter Address: ");
+            String address = sc.next();
 
             System.out.print("Enter Majors: ");
             String majors = sc.next();
@@ -118,10 +135,9 @@ public class Controller {
             String universityName = sc.next();
 
             candidates.add(new InternCandidate(candidateId,
-                    Validate.getFirstName(),
-                    Validate.getLastName(),
+                    firstname,lastname,
                     Validate.getBirthDate(),
-                    Validate.getAddress(),
+                    address,
                     Validate.getPhone(),
                     Validate.getEmail(),
                     majors,
@@ -159,6 +175,31 @@ public class Controller {
             }
         }
     }
+//Hàm nhập 1 String không giới hạn , kí tự khác số
+    public String getStringUnli(String prompt) {
+        String str;
+        boolean check = true;
+        do {
+            System.out.print(prompt);
+
+            while (!sc.hasNextLine()) {
+                System.out.print(prompt);
+                sc.next();
+            }
+
+            str = sc.nextLine();
+
+            for (char c : str.toCharArray()) {
+                if (!Character.isDigit(c)) {
+                    check = false;
+                    break;
+                }
+            }
+        } while (!check);
+
+        return str;
+    }
+    
 
     private void displayAllCandidates() {
         System.out.println("===========EXPERIENCE CANDIDATE============");
