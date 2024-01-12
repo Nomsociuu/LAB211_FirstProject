@@ -69,7 +69,7 @@ public class Controller {
             String proSkill = sc.next();
 
             candidates.add(new ExperienceCandidate(candidateId,
-                    firstname,lastname,
+                    firstname, lastname,
                     Validate.getBirthDate(),
                     address,
                     Validate.getPhone(),
@@ -102,7 +102,7 @@ public class Controller {
             String education = sc.next();
 
             candidates.add(new FresherCandidate(candidateId,
-                    firstname,lastname,
+                    firstname, lastname,
                     Validate.getBirthDate(),
                     address,
                     Validate.getPhone(),
@@ -135,7 +135,7 @@ public class Controller {
             String universityName = sc.next();
 
             candidates.add(new InternCandidate(candidateId,
-                    firstname,lastname,
+                    firstname, lastname,
                     Validate.getBirthDate(),
                     address,
                     Validate.getPhone(),
@@ -175,32 +175,8 @@ public class Controller {
             }
         }
     }
-//Hàm nhập 1 String không giới hạn , kí tự khác số
-    public String getStringUnli(String prompt) {
-        String str;
-        boolean check = true;
-        do {
-            System.out.print(prompt);
 
-            while (!sc.hasNextLine()) {
-                System.out.print(prompt);
-                sc.next();
-            }
-
-            str = sc.nextLine();
-
-            for (char c : str.toCharArray()) {
-                if (!Character.isDigit(c)) {
-                    check = false;
-                    break;
-                }
-            }
-        } while (!check);
-
-        return str;
-    }
-    
-
+//Display trước khi search 1 
     private void displayAllCandidates() {
         System.out.println("===========EXPERIENCE CANDIDATE============");
         displayCandidatesByType(0);
@@ -209,6 +185,7 @@ public class Controller {
         System.out.println("===========INTERN CANDIDATE================");
         displayCandidatesByType(2);
     }
+//Display sau khi enter no
 
     private void displayCandidates() {
         System.out.println("-----------------------------");
@@ -218,6 +195,7 @@ public class Controller {
         }
         System.out.println("-----------------------------");
     }
+//Display trước khi search 1 kéo theo
 
     private void displayCandidatesByType(int candidateType) {
         for (Candidate candidate : candidates) {

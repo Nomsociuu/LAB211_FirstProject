@@ -1,10 +1,10 @@
-
 package Model;
 
 import java.util.Scanner;
 
 public class Validate {
-    static final Scanner scanner = new Scanner(System.in); 
+
+    static final Scanner scanner = new Scanner(System.in);
 
     public static String getBirthDate() {
         String birthDate;
@@ -26,18 +26,13 @@ public class Validate {
         }
     }
 
-
     public static String getPhone() {
         String phone;
         do {
             System.out.print("Enter Phone (minimum 10 digits): ");
             phone = scanner.next();
-        } while (!isValidPhone(phone));
+        } while (!phone.matches("\\d{10,}"));
         return phone;
-    }
-
-    public static boolean isValidPhone(String phone) {
-        return phone.matches("\\d{10,}");
     }
 
     public static String getEmail() {
@@ -45,26 +40,44 @@ public class Validate {
         do {
             System.out.print("Enter Email: ");
             email = scanner.next();
-        } while (!isValidEmail(email));
+        } while (!email.matches("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}"));
         return email;
-    }
-
-    public static boolean isValidEmail(String email) {
-        return email.matches("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}");
     }
 
     public static String getValidGraduationRank() {
         String graduationRank;
         do {
             graduationRank = scanner.next();
-        } while (!isValidGraduationRankValue(graduationRank));
+        } while (!(graduationRank.equalsIgnoreCase("Excellence")
+                || graduationRank.equalsIgnoreCase("Good")
+                || graduationRank.equalsIgnoreCase("Fair")
+                || graduationRank.equalsIgnoreCase("Poor")));
         return graduationRank;
     }
 
-    public static boolean isValidGraduationRankValue(String graduationRank) {
-        return graduationRank.equalsIgnoreCase("Excellence") ||
-                graduationRank.equalsIgnoreCase("Good") ||
-                graduationRank.equalsIgnoreCase("Fair") ||
-                graduationRank.equalsIgnoreCase("Poor");
+//Hàm nhập 1 String không giới hạn , kí tự khác số
+
+    public String getStringUnli(String prompt) {
+        String str;
+        boolean check = true;
+        do {
+            System.out.print(prompt);
+
+            while (!scanner.hasNextLine()) {
+                System.out.print(prompt);
+                scanner.next();
+            }
+
+            str = scanner.nextLine();
+
+            for (char c : str.toCharArray()) {
+                if (!Character.isDigit(c)) {
+                    check = false;
+                    break;
+                }
+            }
+        } while (!check);
+
+        return str;
     }
 }
