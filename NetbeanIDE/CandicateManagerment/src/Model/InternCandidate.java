@@ -2,11 +2,11 @@ package Model;
 
 public class InternCandidate extends Candidate {
     private String majors;
-    private String semester;
+    private int semester;
     private String universityName;
 
     public InternCandidate(String candidateId, String firstName, String lastName, String birthDate,
-                           String address, String phone, String email, String majors, String semester,
+                           String address, String phone, String email, String majors, int semester,
                            String universityName) {
         super(candidateId, firstName, lastName, birthDate, address, phone, email, 2);
         this.majors = majors;
@@ -22,11 +22,11 @@ public class InternCandidate extends Candidate {
         this.majors = majors;
     }
 
-    public String getSemester() {
+    public int getSemester() {
         return semester;
     }
 
-    public void setSemester(String semester) {
+    public void setSemester(int semester) {
         this.semester = semester;
     }
 

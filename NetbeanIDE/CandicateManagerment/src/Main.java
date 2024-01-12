@@ -7,7 +7,6 @@ public class Main {
         controller.run();
     }
 }
-//Trong Fresher chua xet den TH BirthD>=GraduationD
-//
+
 
 

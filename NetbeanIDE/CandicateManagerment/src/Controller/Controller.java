@@ -1,21 +1,17 @@
 package Controller;
 
-// CandidateManagementController.java
 import Model.Candidate;
 import Model.ExperienceCandidate;
 import Model.FresherCandidate;
 import Model.InternCandidate;
 import Model.Validate;
 import View.View;
-import static View.View.getUserChoice;
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Controller {
 
     private ArrayList<Candidate> candidates = new ArrayList<>();
-    ExperienceCandidate expca = new ExperienceCandidate();
     Validate vali = new Validate();
     static final Scanner sc = new Scanner(System.in);
 
@@ -55,16 +51,13 @@ public class Controller {
         do {
             System.out.println("____Creating Experience Candidate____");
 
-            System.out.print("Enter Candidate ID: ");
-            String candidateId = sc.next();
+            String candidateId = vali.getValidID("Enter ID (format: DE###): ");
             String firstname = vali.getUnliString("Enter First Name: ");
             String lastname = vali.getUnliString("Enter Last Name: ");
             String address = vali.getUnliString("Enter Address: ");
 
-            System.out.print("Enter Year of Experience: ");
-            int expInYear = getUserChoice(0, 100);
-            System.out.print("Enter Professional Skill: ");
-            String proSkill = sc.next();
+            int expInYear = vali.getNumberInRange("Enter Year of Experience",0,100);
+            String proSkill = vali.getUnliString("Enter Professional Skill: ");
 
             candidates.add(new ExperienceCandidate(candidateId,
                     firstname, lastname,
@@ -83,21 +76,16 @@ public class Controller {
         do {
             System.out.println("____Creating Fresher Candidate____");
 
-            System.out.print("Enter Candidate ID: ");
-            String candidateId = sc.next();
-            System.out.print("Enter First Name: ");
-            String firstname = sc.next();
-            System.out.print("Enter Last Name: ");
-            String lastname = sc.next();
-            System.out.print("Enter Address: ");
-            String address = sc.next();
+            String candidateId = vali.getValidID("Enter ID (format: DE###): ");
+            String firstname = vali.getUnliString("Enter First Name: ");
+            String lastname = vali.getUnliString("Enter Last Name: ");
+            String address = vali.getUnliString("Enter Address: ");
 
             System.out.print("Enter Graduation Date: ");
             String graduationDate = sc.next();
             System.out.print("Enter Graduation Rank (Excellence/Good/Fair/Poor): ");
             String graduationRank = Validate.getValidGraduationRank();
-            System.out.print("Enter University Name: ");
-            String education = sc.next();
+            String education = vali.getUnliString("Enter University Name: ");
 
             candidates.add(new FresherCandidate(candidateId,
                     firstname, lastname,
@@ -116,21 +104,15 @@ public class Controller {
         do {
             System.out.println("____Creating Intern Candidate____");
 
-            System.out.print("Enter Candidate ID: ");
-            String candidateId = sc.next();
-            System.out.print("Enter First Name: ");
-            String firstname = sc.next();
-            System.out.print("Enter Last Name: ");
-            String lastname = sc.next();
-            System.out.print("Enter Address: ");
-            String address = sc.next();
+            String candidateId = vali.getValidID("Enter ID (format: DE###): ");
+            String firstname = vali.getUnliString("Enter First Name: ");
+            String lastname = vali.getUnliString("Enter Last Name: ");
+            String address = vali.getUnliString("Enter Address: ");
 
-            System.out.print("Enter Majors: ");
-            String majors = sc.next();
+            String majors = vali.getUnliString("Enter Majors: ");
             System.out.print("Enter Semester: ");
-            String semester = sc.next();
-            System.out.print("Enter University Name: ");
-            String universityName = sc.next();
+            int semester = vali.getNumberInRange("Enter Semester: ",0,4);
+            String universityName = vali.getUnliString("Enter University Name: ");
 
             candidates.add(new InternCandidate(candidateId,
                     firstname, lastname,

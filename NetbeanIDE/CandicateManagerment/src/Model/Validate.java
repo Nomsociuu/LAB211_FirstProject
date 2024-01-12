@@ -56,7 +56,6 @@ public class Validate {
     }
 
 //Hàm nhập 1 String không giới hạn , kí tự khác số
-
     public String getUnliString(String prompt) {
         System.out.print(prompt);
         String input = scanner.nextLine();
@@ -70,7 +69,7 @@ public class Validate {
 
     
 //Hàm nhập số : min < num < max; 0 < num < 40 ; 0 < num < 4
-    public static int getNumberInRange(int min, int max) {
+    public int getNumberInRange(String prompt, int min, int max) {
         int number;
         do {
 
@@ -83,9 +82,18 @@ public class Validate {
         return number;
     }
     
-//Hàm nhập ngày : Format SimpleDate //DaiTuong
-//Hàm nhập string gồm 10 kí tự số // -> Phone
-//Hàm nhập email ( available )
-// Hàm nhập RankGraduation : choice -> table ( available )
+//ID : Str, gồm 3 số
+    public String getValidID(String prompt) {
+        System.out.print(prompt);
+        String input = scanner.nextLine();
+
+        while (!input.matches("DE\\d{3}")) {
+            System.out.println("Invalid ID format. Please enter in the format DE###.");
+            System.out.print(prompt);
+            input = scanner.nextLine();
+        }
+
+        return input;
+    }
 
 }

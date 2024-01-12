@@ -1,6 +1,6 @@
 package View;
 
-// CandidateManagementView.java
+
 import java.util.Scanner;
 
 public class View {
@@ -32,6 +32,6 @@ public class View {
         return choice;
     }
 
-    // Other methods for user input and display as needed
+    
 }
 
