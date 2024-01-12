@@ -57,27 +57,35 @@ public class Validate {
 
 //Hàm nhập 1 String không giới hạn , kí tự khác số
 
-    public String getStringUnli(String prompt) {
-        String str;
-        boolean check = true;
-        do {
-            System.out.print(prompt);
-
-            while (!scanner.hasNextLine()) {
-                System.out.print(prompt);
-                scanner.next();
-            }
-
-            str = scanner.nextLine();
-
-            for (char c : str.toCharArray()) {
-                if (!Character.isDigit(c)) {
-                    check = false;
-                    break;
-                }
-            }
-        } while (!check);
-
-        return str;
+    public static String getUnliString() {
+        System.out.print("Enter a string (alphabetic characters only, press Enter to finish): ");
+        String input = scanner.nextLine();
+        while (!input.matches("[a-zA-Z]+")) {
+            System.out.println("Invalid input. Please enter alphabetic characters only.");
+            System.out.print("Enter a string (alphabetic characters only, press Enter to finish): ");
+            input = scanner.nextLine();
+        }
+        return input;
     }
+
+    
+//Hàm nhập số : min < num < max; 0 < num < 40 ; 0 < num < 4
+    public static int getNumberInRange(int min, int max) {
+        int number;
+        do {
+
+            while (!scanner.hasNextInt()) {
+                System.out.println("Invalid input. Please enter a valid input.");
+                scanner.next(); // Consume invalid input
+            }
+            number = scanner.nextInt();
+        } while (number < min || number >= max);
+        return number;
+    }
+    
+//Hàm nhập ngày : Format SimpleDate //DaiTuong
+//Hàm nhập string gồm 10 kí tự số // -> Phone
+//Hàm nhập email ( available )
+// Hàm nhập RankGraduation : choice -> table ( available )
+
 }
