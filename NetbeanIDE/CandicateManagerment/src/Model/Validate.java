@@ -10,26 +10,6 @@ public class Validate {
 
     static final Scanner scanner = new Scanner(System.in);
 
-    public String getBirthDate() {
-        String birthDate;
-        do {
-            System.out.print("Enter Birth Date (yyyy): ");
-            birthDate = scanner.next();
-        } while (!isValidBirthDate(birthDate));
-        return birthDate;
-    }
-
-    public static boolean isValidBirthDate(String birthDate) {
-        try {
-            int year = Integer.parseInt(birthDate);
-            int currentYear = java.time.Year.now().getValue();
-            return year >= 1900 && year <= currentYear;
-        } catch (NumberFormatException e) {
-            System.out.println("Invalid birth date. Please enter a valid year.");
-            return false;
-        }
-    }
-
     public String getPhone() {
         String phone;
         do {
@@ -62,7 +42,7 @@ public class Validate {
 //Hàm nhập 1 String không giới hạn , kí tự khác số
     public String getUnliString(String prompt) {
         System.out.print(prompt);
-        String input = scanner.next();
+        String input = scanner.nextLine();
         while (!input.matches("[a-zA-Z\\s]+")) {
             System.out.println("Invalid input. Enter character only!!");
             System.out.print(prompt);
@@ -80,8 +60,51 @@ public class Validate {
                 System.out.println("Invalid input. Please enter a valid input.");
             }
             number = scanner.nextInt();
+            scanner.nextLine();
         } while (number < min || number >= max);
         return number;
     }
-  
+
+    public String checkBirthDay() {
+        while (true) {
+            System.out.print("Enter BirthDay: ");
+            String result = scanner.nextLine().trim();
+            String regex = "^[0-9]{4}$";
+            if (result.matches(regex)) {
+                int birthYear = Integer.parseInt(result);
+                int currentYear = Calendar.getInstance().get(Calendar.YEAR);
+                int age = currentYear - birthYear;
+                if (birthYear < currentYear && age >= 18 && age <= 60) {
+                    return result;
+                } else {
+                    System.out.println("Invalid input. Birth year cannot be in current or the future and age is from 18 to 60.");
+                    System.out.print("Enter again: ");
+                }
+            } else {
+                System.out.println("Invalid input. Please enter a valid birth year with a length of 4 digits.");
+                System.out.print("Enter again: ");
+            }
+        }
+    }
+
+//Trong Fresher xet TH BirthD>=GraduationD
+    public boolean checkTime(String BirthD, String GraduateD) {
+        try {
+            SimpleDateFormat df = new SimpleDateFormat("yyyy");
+
+            Date birthDate = df.parse(BirthD);
+            Date graduationDate = df.parse(GraduateD);
+
+            //tru di 18
+            Calendar cal = Calendar.getInstance();
+            cal.setTime(birthDate);
+            cal.add(Calendar.YEAR, 18);
+            Date minBirthDate = cal.getTime();
+
+            return graduationDate.after(minBirthDate) || graduationDate.equals(minBirthDate);
+        } catch (ParseException e) {
+            return false;
+        }
+
+    }
 }
