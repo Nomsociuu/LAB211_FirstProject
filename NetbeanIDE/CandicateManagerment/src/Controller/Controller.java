@@ -16,6 +16,7 @@ public class Controller {
 
     private ArrayList<Candidate> candidates = new ArrayList<>();
     ExperienceCandidate expca = new ExperienceCandidate();
+    Validate vali = new Validate();
     static final Scanner sc = new Scanner(System.in);
 
     public void run() {
@@ -56,12 +57,9 @@ public class Controller {
 
             System.out.print("Enter Candidate ID: ");
             String candidateId = sc.next();
-            System.out.print("Enter First Name: ");
-            String firstname = sc.next();
-            System.out.print("Enter Last Name: ");
-            String lastname = sc.next();
-            System.out.print("Enter Address: ");
-            String address = sc.next();
+            String firstname = vali.getUnliString("Enter First Name: ");
+            String lastname = vali.getUnliString("Enter Last Name: ");
+            String address = vali.getUnliString("Enter Address: ");
 
             System.out.print("Enter Year of Experience: ");
             int expInYear = getUserChoice(0, 100);
@@ -159,21 +157,22 @@ public class Controller {
         System.out.println("Searching Candidates:");
         displayAllCandidates();
 
-        // Take input for searching
         System.out.print("Input Candidate name (First name or Last name): ");
         String candidateName = sc.next().toLowerCase();
         System.out.print("Input type of candidate (0 for Experience, 1 for Fresher, 2 for Intern): ");
         int candidateType = View.getUserChoice(0, 2);
 
-        // Search and display result
+        System.out.println("-----------------------------");
         System.out.println("The candidates found:");
         for (Candidate candidate : candidates) {
             if ((candidate.getFirstName().toLowerCase().contains(candidateName)
                     || candidate.getLastName().toLowerCase().contains(candidateName))
                     && candidate.getCandidateType() == candidateType) {
                 System.out.println(candidate.getCandidateInfo());
+
             }
         }
+        System.out.println("-----------------------------");
     }
 
 //Display trước khi search 1 
@@ -185,8 +184,8 @@ public class Controller {
         System.out.println("===========INTERN CANDIDATE================");
         displayCandidatesByType(2);
     }
-//Display sau khi enter no
 
+//Display sau khi enter no
     private void displayCandidates() {
         System.out.println("-----------------------------");
         System.out.println("All candicate has been entered:   ");
@@ -195,8 +194,8 @@ public class Controller {
         }
         System.out.println("-----------------------------");
     }
-//Display trước khi search 1 kéo theo
 
+//Display trước khi search 1 kéo theo
     private void displayCandidatesByType(int candidateType) {
         for (Candidate candidate : candidates) {
             if (candidate.getCandidateType() == candidateType) {

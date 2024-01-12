@@ -57,12 +57,12 @@ public class Validate {
 
 //Hàm nhập 1 String không giới hạn , kí tự khác số
 
-    public static String getUnliString() {
-        System.out.print("Enter a string (alphabetic characters only, press Enter to finish): ");
+    public String getUnliString(String prompt) {
+        System.out.print(prompt);
         String input = scanner.nextLine();
-        while (!input.matches("[a-zA-Z]+")) {
-            System.out.println("Invalid input. Please enter alphabetic characters only.");
-            System.out.print("Enter a string (alphabetic characters only, press Enter to finish): ");
+        while (!input.matches("[a-zA-Z\\s]+")) {
+            System.out.println("Invalid input. Enter character only!!");
+            System.out.print(prompt);
             input = scanner.nextLine();
         }
         return input;
@@ -76,7 +76,7 @@ public class Validate {
 
             while (!scanner.hasNextInt()) {
                 System.out.println("Invalid input. Please enter a valid input.");
-                scanner.next(); // Consume invalid input
+                scanner.next();
             }
             number = scanner.nextInt();
         } while (number < min || number >= max);
