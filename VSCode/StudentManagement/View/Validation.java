@@ -6,10 +6,10 @@ import java.util.Scanner;
 import LAB211.StudentManagement.Model.*;
 
 public class Validation {
-    private final static Scanner in = new Scanner(System.in);
+    private final Scanner in = new Scanner(System.in);
 
     //check user input number limit
-    public static int checkInputIntLimit(int min, int max) {
+    public int checkInputIntLimit(int min, int max) {
         //loop until user input correct
         while (true) {
             try {
@@ -27,7 +27,7 @@ public class Validation {
     }
 
     //check user input string
-    public static String checkInputString() {
+    public String checkInputString() {
         //loop until user input correct
         while (true) {
             String result = in.nextLine().trim();
@@ -41,7 +41,7 @@ public class Validation {
     }
 
     //check user input yes/ no
-    public static boolean checkInputYN() {
+    public boolean checkInputYN() {
         //loop until user input correct
         while (true) {
             String result = checkInputString();
@@ -59,7 +59,7 @@ public class Validation {
     }
 
     //check user input u / d
-    public static boolean checkInputUD() {
+    public boolean checkInputUD() {
         //loop until user input correct
         while (true) {
             String result = checkInputString();
@@ -77,7 +77,7 @@ public class Validation {
     }
 
     //check user input course
-    public static String checkInputCourse() {
+    public String checkInputCourse() {
         //loop until user input correct
         while (true) {
             String result = checkInputString();
@@ -93,7 +93,7 @@ public class Validation {
     }
 
     //check student exist
-    public static boolean checkStudentExist(ArrayList<Student> ls, String id,
+    public boolean checkStudentExist(ArrayList<Student> ls, String id,
             String studentName, String semester, String courseName) {
         int size = ls.size();
         for (Student student : ls) {
@@ -108,7 +108,7 @@ public class Validation {
     }
 
     //check report exist
-    public static boolean checkReportExist(ArrayList<Report> lr, String name,
+    public boolean checkReportExist(ArrayList<Report> lr, String name,
             String course, int total) {
         for (Report report : lr) {
             if (name.equalsIgnoreCase(report.getStudentName())
@@ -121,7 +121,7 @@ public class Validation {
     }
 
     //check id and exist
-    public static boolean checkIdExist(ArrayList<Student> ls, String id, String name) {
+    public boolean checkIdExist(ArrayList<Student> ls, String id, String name) {
         for (Student student : ls) {
             if (id.equalsIgnoreCase(student.getId())
                     && !name.equalsIgnoreCase(student.getStudentName())) {
@@ -132,7 +132,7 @@ public class Validation {
     }
 
     //check user change or not
-    public static boolean checkChangeInfomation(Student student, String id,
+    public boolean checkChangeInfomation(Student student, String id,
             String name, String semester, String course) {
         if (id.equalsIgnoreCase(student.getId())
                 && name.equalsIgnoreCase(student.getStudentName())
