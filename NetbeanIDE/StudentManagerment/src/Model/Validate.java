@@ -1,6 +1,5 @@
 package Model;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 
@@ -159,8 +158,8 @@ public class Validate {
             if (empId.matches("ST\\d{3}")) {
                 return true; 
             } else {
-                System.out.println("The Doctor not null and must follow format 'DTxxx' with x is digit");
-                System.out.print("Enter Doctor ID: ");
+                System.out.println("The Student must follow format 'STxxx' with x is digit");
+                System.out.print("Enter Student ID: ");
             }
         } while (true);
     }

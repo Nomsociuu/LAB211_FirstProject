@@ -18,6 +18,7 @@ public abstract class Menu {
         }
     }
 
+    
     public void display() {
         System.out.println(title);
         for (int i = 0; i < list.size(); i++) {
@@ -43,5 +44,7 @@ public abstract class Menu {
         } while (choice > 0 && choice < list.size());
 
     }
+    
+  
    
 }
