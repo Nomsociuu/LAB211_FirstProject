@@ -88,6 +88,11 @@ public class Controller extends Menu {
                 System.out.print("Enter Student ID: ");
                 String id = sc.nextLine();
 
+                if (isStudentIdExists(id)) {
+                    System.out.println("Student ID already exists. Please enter a different ID.");
+                    continue;
+                }
+
                 System.out.print("Enter student name: ");
                 String name = sc.nextLine();
 
@@ -110,12 +115,21 @@ public class Controller extends Menu {
 
     private boolean checkContinueAddingStudents() {
         if (std.size() > 10) {
-            System.out.print("Number of students is greater than 10.");
-            System.out.println("Do you want to continue adding students? (Y/N): ");
+            System.out.println("Number of students is greater than 10.");
+            System.out.print("Do you want to continue adding students? (Y/N): ");
             char continueAdding = sc.nextLine().charAt(0);
             return continueAdding == 'Y' || continueAdding == 'y';
         }
         return true;
+    }
+
+    private boolean isStudentIdExists(String id) {
+        for (Student student : std) {
+            if (student.getId().equals(id)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public String courseMenu() {
@@ -146,7 +160,7 @@ public class Controller extends Menu {
         String partialName = sc.nextLine();
         List<Student> matchingStudents = new ArrayList<>();
         for (Student student : std) {
-            
+
             if (student.getStudentname().toLowerCase().contains(partialName.toLowerCase())) {
                 matchingStudents.add(student);
             }
@@ -227,7 +241,6 @@ public class Controller extends Menu {
         }
     }
 
-
     public void displayAllStudents() {
         System.out.println("Student Information:");
         System.out.printf("%-15s%-15s%n", "Name", "Course");
@@ -237,7 +250,6 @@ public class Controller extends Menu {
                     student.getStudentname(), student.getCourse());
         }
     }
-   
 
     public void Report() {
         Map<String, Map<String, Integer>> studentCourseCounts = new HashMap<>();

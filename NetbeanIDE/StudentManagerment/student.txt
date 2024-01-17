@@ -10,3 +10,4 @@ ST009,Hung,4,.Net
 ST010,Thuy,2,.Net
 ST011,Thuy,3,Java
 ST001,Hang,3,.Net
+ST020,Thien,2,C/C++

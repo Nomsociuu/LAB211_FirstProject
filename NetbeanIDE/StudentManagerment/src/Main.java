@@ -14,5 +14,4 @@ public class Main {
         controller.run();
     }
 }
-//xet den truong hop trung id nhung khac ten
 
