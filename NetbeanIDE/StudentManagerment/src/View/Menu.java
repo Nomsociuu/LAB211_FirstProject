@@ -5,11 +5,12 @@ import java.util.Scanner;
 public class Menu {
 
     static Scanner sc = new Scanner(System.in);
+
     public static void displayMainMenu() {
         System.out.println("WELCOME TO STUDENT MANAGEMENT");
         System.out.println("1. Create");
+        System.out.println("2. Find and Sort");
         System.out.println("3. Update/Delete");
-        System.out.println("3. Intern");
         System.out.println("4. Report");
         System.out.println("5. Exit");
         System.out.print("Please choose (1-5): ");
@@ -25,6 +26,7 @@ public class Menu {
             choice = sc.nextInt();
             if (choice < min || choice > max) {
                 System.out.println("Invalid choice. Please choose between " + min + " and " + max + ".");
+                System.out.println("Please choose (1-5): ");
             }
         } while (choice < min || choice > max);
 
