@@ -30,6 +30,7 @@ public class Student {
     public void setId(String id) {
         this.id = id;
     }
+<<<<<<< Updated upstream
 
     public String getStudentName() {
         return studentName;
@@ -57,4 +58,6 @@ public class Student {
     
     
     
+=======
+>>>>>>> Stashed changes
 }
