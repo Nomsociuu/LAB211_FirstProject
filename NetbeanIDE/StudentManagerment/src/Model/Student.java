@@ -11,11 +11,11 @@ package Model;
 
 public class Student {
     private String studentname;
-    private String semeter;
+    private int semeter;
     private String course;
     private String id;
 
-    public Student(String studentname, String semeter, String course, String id) {
+    public Student(String studentname, int semeter, String course, String id) {
         this.id = id;
         this.studentname = studentname;
         this.semeter = semeter;
@@ -30,11 +30,11 @@ public class Student {
         this.studentname = studentname;
     }
 
-    public String getSemeter() {
+    public int getSemeter() {
         return semeter;
     }
 
-    public void setSemeter(String semeter) {
+    public void setSemeter(int semeter) {
         this.semeter = semeter;
     }
 

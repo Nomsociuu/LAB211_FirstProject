@@ -7,8 +7,10 @@ public abstract class Menu {
 
     protected String title;
     protected ArrayList<String> list = new ArrayList();
-    
-    public Menu(){}
+
+    public Menu() {
+    }
+
     public Menu(String title, String[] s) {
         this.title = title;
         for (String item : s) {
@@ -41,4 +43,5 @@ public abstract class Menu {
         } while (choice > 0 && choice < list.size());
 
     }
+   
 }

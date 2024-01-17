@@ -141,4 +141,27 @@ public class Validate {
         }
         return true;
     }
+    
+    
+    private static final Scanner scanner = new Scanner(System.in);
+    private static String empId;
+    
+    public static String getIDString(){
+        return empId;
+    }
+
+    public static boolean isEmpIdValid(String empId) {
+        return empId.matches("DT\\d{3}");
+    }
+    public static boolean validDoc() {
+        do {
+            empId = scanner.nextLine();
+            if (empId.matches("DT\\d{3}")) {
+                return true; 
+            } else {
+                System.out.println("The Doctor not null and must follow format 'DTxxx' with x is digit");
+                System.out.print("Enter Doctor ID: ");
+            }
+        } while (true);
+    }
 }
