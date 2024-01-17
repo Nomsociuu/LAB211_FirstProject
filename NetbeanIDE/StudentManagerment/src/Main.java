@@ -14,9 +14,5 @@ public class Main {
         controller.run();
     }
 }
-//create, update/delete, save/read, display,find and sort done
-// total course , hien thi sau khi 
-//report chua xong
-//chuyen course tu nhap sang chon choice
-// Sau khi nhaap du 10 nguoi thi in ra nhap tiep hay kh
+//xet den truong hop trung id nhung khac ten
 

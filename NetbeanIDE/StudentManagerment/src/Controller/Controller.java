@@ -1,6 +1,7 @@
 package Controller;
 
 import Model.Student;
+import Model.Validate;
 import View.Menu;
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -36,7 +37,7 @@ public class Controller extends Menu {
                 UpdateAndDeleteStudent();
             case 4 -> {
                 displayAllStudents();
-                displayReport();
+                Report();
             }
             case 5 ->
                 System.out.println("Exited. Bye bye");
@@ -55,11 +56,11 @@ public class Controller extends Menu {
                     String studentName = parts[1];
                     int semester = Integer.parseInt(parts[2]);
                     String courseName = parts[3];
-                    if (isEmpIdValid(id)) {
+                    if (Validate.isEmpIdValid(id)) {
                         Student st = new Student(studentName, semester, courseName, id);
                         std.add(st);
                     } else {
-                        System.out.println("Type wrong information format, type again!!!");
+                        System.out.println("Typed wrong information format");
                     }
                 }
             }
@@ -87,12 +88,12 @@ public class Controller extends Menu {
                 System.out.print("Enter Student ID: ");
                 String id = sc.nextLine();
 
-                System.out.println("Enter student name: ");
+                System.out.print("Enter student name: ");
                 String name = sc.nextLine();
 
                 String course = courseMenu();
 
-                System.out.println("Enter semeter: ");
+                System.out.print("Enter semeter: ");
                 int semester = sc.nextInt();
                 sc.nextLine();
 
@@ -102,8 +103,6 @@ public class Controller extends Menu {
 
             saveDoctorsToFile("student.txt");
             System.out.println("Doctor added successfully.");
-        } catch (NumberFormatException e) {
-            System.out.println("Invalid input for Availability. Please enter a number.");
         } catch (IOException e) {
             System.out.println("Error saving data to file: " + e.getMessage());
         }
@@ -111,7 +110,8 @@ public class Controller extends Menu {
 
     private boolean checkContinueAddingStudents() {
         if (std.size() > 10) {
-            System.out.print("Number of students is greater than 10. Do you want to continue adding students? (Y/N): ");
+            System.out.print("Number of students is greater than 10.");
+            System.out.println("Do you want to continue adding students? (Y/N): ");
             char continueAdding = sc.nextLine().charAt(0);
             return continueAdding == 'Y' || continueAdding == 'y';
         }
@@ -123,7 +123,7 @@ public class Controller extends Menu {
         System.out.println("1. Java");
         System.out.println("2. .Net");
         System.out.println("3. C/C++");
-        System.out.println("Enter your course: ");
+        System.out.print("Enter your course: ");
         int choice = sc.nextInt();
         switch (choice) {
             case 1:
@@ -142,10 +142,11 @@ public class Controller extends Menu {
     }
 
     public void FindAndSortStudent() {
+        System.out.print("Enter the name or character of student you want to find: ");
         String partialName = sc.nextLine();
         List<Student> matchingStudents = new ArrayList<>();
         for (Student student : std) {
-            // Case-insensitive check for partial name match
+            
             if (student.getStudentname().toLowerCase().contains(partialName.toLowerCase())) {
                 matchingStudents.add(student);
             }
@@ -216,9 +217,8 @@ public class Controller extends Menu {
             int newSemester = sc.nextInt();
             student.setSemeter(newSemester);
 
-            sc.nextLine(); // Consume the newline character
-            System.out.print("Enter new course: ");
-            String newCourse = sc.nextLine();
+            sc.nextLine();
+            String newCourse = courseMenu();
             student.setCourse(newCourse);
 
             System.out.println("Student information updated successfully.");
@@ -227,9 +227,6 @@ public class Controller extends Menu {
         }
     }
 
-    public void Report() {
-
-    }
 
     public void displayAllStudents() {
         System.out.println("Student Information:");
@@ -242,7 +239,7 @@ public class Controller extends Menu {
     }
    
 
-    public void displayReport() {
+    public void Report() {
         Map<String, Map<String, Integer>> studentCourseCounts = new HashMap<>();
 
         // Count occurrences of each unique combination of student name and course
