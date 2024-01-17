@@ -10,17 +10,40 @@
 package Model;
 
 public class Student {
-    String id,studentName,courseName;
-    int semester;
+    private String studentname;
+    private String semeter;
+    private String course;
+    private String id;
 
-    public Student() {
+    public Student(String studentname, String semeter, String course, String id) {
+        this.id = id;
+        this.studentname = studentname;
+        this.semeter = semeter;
+        this.course = course;
     }
 
-    public Student(String id, String studentName, String courseName, int semester) {
-        this.id = id;
-        this.studentName = studentName;
-        this.courseName = courseName;
-        this.semester = semester; // (There are only three courses: Java, .Net, C/C++). 
+    public String getStudentname() {
+        return studentname;
+    }
+
+    public void setStudentname(String studentname) {
+        this.studentname = studentname;
+    }
+
+    public String getSemeter() {
+        return semeter;
+    }
+
+    public void setSemeter(String semeter) {
+        this.semeter = semeter;
+    }
+
+    public String getCourse() {
+        return course;
+    }
+
+    public void setCourse(String course) {
+        this.course = course;
     }
 
     public String getId() {
@@ -29,30 +52,6 @@ public class Student {
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    public String getStudentName() {
-        return studentName;
-    }
-
-    public void setStudentName(String studentName) {
-        this.studentName = studentName;
-    }
-
-    public String getCourseName() {
-        return courseName;
-    }
-
-    public void setCourseName(String courseName) {
-        this.courseName = courseName;
-    }
-
-    public int getSemester() {
-        return semester;
-    }
-
-    public void setSemester(int semester) {
-        this.semester = semester;
     }
     
     

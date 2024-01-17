@@ -1,33 +1,44 @@
 package View;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Menu {
+public abstract class Menu {
 
-    static Scanner sc = new Scanner(System.in);
-    public static void displayMainMenu() {
-        System.out.println("WELCOME TO STUDENT MANAGEMENT");
-        System.out.println("1. Create");
-        System.out.println("3. Update/Delete");
-        System.out.println("3. Intern");
-        System.out.println("4. Report");
-        System.out.println("5. Exit");
-        System.out.print("Please choose (1-5): ");
+    protected String title;
+    protected ArrayList<String> list = new ArrayList();
+    
+    public Menu(){}
+    public Menu(String title, String[] s) {
+        this.title = title;
+        for (String item : s) {
+            list.add(item);
+        }
     }
 
-    public static int getUserChoice(int min, int max) {
+    public void display() {
+        System.out.println(title);
+        for (int i = 0; i < list.size(); i++) {
+            System.out.println((i + 1) + ". " + list.get(i));
+        }
+    }
+
+    public int getChoice() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter selection: ");
+        int choice = scanner.nextInt();
+        return choice;
+    }
+
+    public abstract void execute(int choice);
+
+    public void run() {
         int choice;
         do {
-            while (!sc.hasNextInt()) {
-                System.out.println("Invalid input. Please enter a number.");
-                sc.next();
-            }
-            choice = sc.nextInt();
-            if (choice < min || choice > max) {
-                System.out.println("Invalid choice. Please choose between " + min + " and " + max + ".");
-            }
-        } while (choice < min || choice > max);
+            display();//list the content of menu
+            choice = getChoice();
+            execute(choice);
+        } while (choice > 0 && choice < list.size());
 
-        return choice;
     }
 }
