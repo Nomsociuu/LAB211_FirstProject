@@ -1,0 +1,2 @@
+1,Apple,VietNam,5,4
+2,Orange,America,7,5

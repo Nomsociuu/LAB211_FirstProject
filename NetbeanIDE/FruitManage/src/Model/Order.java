@@ -6,9 +6,14 @@ public class Order {
 
     private String customerName;
     private ArrayList<Fruit> orderedFruits = new ArrayList<>();
+    
 
     public void addFruit(Fruit fruit) {
         orderedFruits.add(fruit);
+    }
+
+    public String getCustomerName() {
+        return customerName;
     }
 
     public double calculateTotalAmount() {
@@ -20,8 +25,6 @@ public class Order {
     }
 
     public void displayOrder() {
-        System.out.println("\nCustomer: " + customerName);
-        System.out.println("Product | Quantity | Price | Amount");
 
         for (Fruit fruit : orderedFruits) {
             System.out.print("| " + fruit.getName()

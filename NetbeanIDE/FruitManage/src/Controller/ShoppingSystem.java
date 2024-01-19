@@ -1,6 +1,8 @@
 package Controller;
 
 import View.Menu;
+import java.io.IOException;
+import java.text.ParseException;
 
 import java.util.Scanner;
 
@@ -12,6 +14,11 @@ public class ShoppingSystem {
     public void run() {
         while (true) {
             displayMainScreen();
+            try {
+            menu.readDataFromFile("fruit.txt");
+        } catch (IOException | ParseException e) {
+            System.out.println("Error");
+        }
             int choice;
             try {
                 choice = scanner.nextInt();

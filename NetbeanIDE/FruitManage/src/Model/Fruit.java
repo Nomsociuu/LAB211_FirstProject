@@ -8,12 +8,12 @@ public class Fruit {
     private int price;
     private int quantity;
 
-    public Fruit(int id, String name, String origin, int price) {
+    public Fruit(int id, String name, String origin, int price, int quantity) {
         this.id = id;
         this.name = name;
         this.origin = origin;
         this.price = price;
-        this.quantity = 0;
+        this.quantity = quantity;
     }
 
     public Fruit() {
