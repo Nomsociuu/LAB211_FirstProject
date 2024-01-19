@@ -9,8 +9,7 @@ public class Main {
 
     }
 }
-// format chu sau khi in ra
-// ham continue trong create
-//validate
+// format chu sau khi in ra -> rat dau dau
+//validate 
 //file doc / ghi cho create fruit
 //

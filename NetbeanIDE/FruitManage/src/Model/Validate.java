@@ -4,7 +4,8 @@ package Model;
 import java.util.Scanner;
 
 public class Validate {
-    // Helper method to validate positive integers
+    private static String id;
+    static Scanner scanner = new Scanner(System.in);
 
     public int validatePositiveIntInput(String prompt) {
         Scanner scanner = new Scanner(System.in);
@@ -21,7 +22,7 @@ public class Validate {
 
     // Helper method to validate input within a specified range
     public int validateRangeInput(int min, int max, String prompt, String errorMessage) {
-        Scanner scanner = new Scanner(System.in);
+        
         int input;
         do {
             while (!scanner.hasNextInt()) {
@@ -31,5 +32,24 @@ public class Validate {
             input = scanner.nextInt();
         } while (input < min || input > max);
         return input;
+    }
+    public static String getIDString() {
+        return id;
+    }
+
+    public static boolean isEmpIdValid(String empId) {
+        return empId.matches("ST\\d{3}");
+    }
+
+    public static boolean validDoc() {
+        do {
+            id = scanner.nextLine();
+            if (id.matches("ST\\d{3}")) {
+                return true;
+            } else {
+                System.out.println("The Student must follow format 'STxxx' with x is digit");
+                System.out.print("Enter Student ID: ");
+            }
+        } while (true);
     }
 }
