@@ -1,0 +1,13 @@
+ST001,Thien,2,Java
+ST002,Huy,3,.Net
+ST003,Giang,1,.Net
+ST004,Cuong,3,C/C++
+ST005,Thien,3,.Net
+ST006,Thien,1,Java
+ST007,Dea,2,C/C++
+ST008,Gey,1,.Net
+ST009,Hung,4,.Net
+ST010,Thuy,2,.Net
+ST011,Thuy,3,Java
+ST001,Hang,3,.Net
+ST020,Thien,2,C/C++
