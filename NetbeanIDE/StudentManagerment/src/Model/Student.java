@@ -21,34 +21,33 @@ public class Student {
     public void setStudentname(String studentname) {
         this.studentname = studentname;
     }
-// <<<<<<< Updated upstream
 
-//     public int getSemeter() {
-//         return semeter;
-//     }
 
-//     public void setSemeter(int semeter) {
-//         this.semeter = semeter;
-//     }
+     public int getSemeter() {
+         return semeter;
+     }
 
-//     public String getCourse() {
-//         return course;
-//     }
+     public void setSemeter(int semeter) {
+         this.semeter = semeter;
+     }
 
-//     public void setCourse(String course) {
-//         this.course = course;
-//     }
+     public String getCourse() {
+         return course;
+     }
 
-//     public String getId() {
-//         return id;
-//     }
+     public void setCourse(String course) {
+         this.course = course;
+     }
 
-//     public void setId(String id) {
-//         this.id = id;
-//     }
+     public String getId() {
+         return id;
+     }
+
+     public void setId(String id) {
+         this.id = id;
+     }
     
     
     
-// =======
-// >>>>>>> Stashed changes
+
 }

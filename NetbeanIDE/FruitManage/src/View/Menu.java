@@ -127,11 +127,13 @@ public class Menu {
 
     public void viewOrders() {
         System.out.println("\nOrders List:");
-        System.out.println("\nCustomer: " + order.getCustomerName());
-        System.out.println("Product | Quantity | Price | Amount");
+        
         for (Order order : orders) {
+            System.out.println("\nCustomer: " + order.getCustomerName());
+            System.out.println("Product | Quantity | Price | Amount");
             order.displayOrder();
         }
+        
         System.out.println();
     }
 
@@ -141,7 +143,7 @@ public class Menu {
         Scanner scanner = new Scanner(System.in);
 
         Order order = new Order();
-        System.out.print("Input your name: ");
+        System.out.print("Input customer name: ");
         String name = scanner.nextLine();
         order.setCustomerName(name);
         
@@ -167,7 +169,13 @@ public class Menu {
             
         } while (orderChoice.equalsIgnoreCase("N"));
         
-        viewOrders();
+        System.out.println("Is there any customer else ?");
+        if(scanner.next().equalsIgnoreCase("N")){
+            viewOrders();
+        }
+        else{
+            shopping();
+        }
 
     }
 
