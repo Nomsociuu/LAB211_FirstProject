@@ -73,124 +73,124 @@ import java.util.*;
         }
     }
 
-        public void createFruit(ArrayList<Model> fruit) {
-            boolean runner = true;
-            while (runner) {
-                String id;
+    public void createFruit(ArrayList<Model> fruit) {
+        boolean runner = true;
+        while (runner) {
+            String id;
+            id = validate.checkString("Enter fruit id: ");
+            if (!validate.checkExistID(fruit, id)) {
+                System.out.println("ID already exists! Please choose a different!");
                 id = validate.checkString("Enter fruit id: ");
-                if (!validate.checkExistID(fruit, id)) {
-                    System.out.println("ID already exists! Please choose a different!");
-                    id = validate.checkString("Enter fruit id: ");
-                }
-                String name = validate.checkString("Enter fruit name: ");
-                double price = validate.checkDouble("Enter price: ");
-                int quantity = validate.checkInt("Enter quantity: ");
-                String origin = validate.checkString("Enter origin: ");
-                Model mods = new Model(id, name, price, quantity, origin);
-                fruit.add(mods);
+            }
+            String name = validate.checkString("Enter fruit name: ");
+            double price = validate.checkDouble("Enter price: ");
+            int quantity = validate.checkInt("Enter quantity: ");
+            String origin = validate.checkString("Enter origin: ");
+            Model mods = new Model(id, name, price, quantity, origin);
+            fruit.add(mods);
 
-                System.out.println("Fruit added!");
-                String check = validate.YorN("Do you want to continue? (Y/N): ");
-                if (check.equalsIgnoreCase("Y")) {
-                    runner = true;
-                } 
-                else if (check.equalsIgnoreCase("N")) {
-                    runner = false;
-                }
-            //Model newFruit = new Model(id, name, price, quantity, origin);
+            System.out.println("Fruit added!");
+            String check = validate.YorN("Do you want to continue? (Y/N): ");
+            if (check.equalsIgnoreCase("Y")) {
+                runner = true;
+            } 
+            else if (check.equalsIgnoreCase("N")) {
+                runner = false;
             }
-        }
-        
-        public void shop(ArrayList<Model> mods, Hashtable<String, ArrayList<Order>> order) {
-            if (mods == null) {
-                System.out.print("Empty");
-            }
-            ArrayList<Order> or = new ArrayList<>();
-                // System.out.print("Enter fruit: ");
-                // int id = 1;
-            boolean ordering = true;
-            do {
-                displayList(mods);
-                System.out.print("Enter item to buy: ");
-                //int item  = validate.checkInt("Enter item to buy: ");
-                int item = validate.checkIntLim(1, mods.size());
-                //Model mods = fruits.get(item - 1);
-                Model md = getItem(mods, item);
-                System.out.print("Enter quantity: ");
-                int quantity = validate.checkIntLim(1, md.getFruitQuantity());
-                md.setFruitQuantity(md.getFruitQuantity() - quantity);
-
-                if (!validate.checkExistItem(or, md.getFruitID())) {
-                    for (Order orderin : or) {
-                        if (orderin.getFruitID().equalsIgnoreCase(md.getFruitID())) {
-                            orderin.setFruitQuantity(orderin.getFruitQuantity() + quantity );
-                        }
-                    }
-                }
-                else {
-                    Order neworder = new Order(md.getFruitID(), md.getFruitName(), quantity, md.getFruitPrice());
-                    or.add(neworder);
-                    // or.add(new Order(md.getFruitID(), md.getFruitName(), quantity, md.getFruitPrice()));
-                }
-                String check = validate.YorN("Do you want to continue? (Y/N): ");
-                if (check.equalsIgnoreCase("N")) {
-                    ordering = false;
-                } 
-                else if (check.equalsIgnoreCase("Y")) {
-                    ordering = true;
-                }
-                    //Model newFruit = new Model(id, name, price, quantity, origin);
-                    
-            }
-            while (ordering);
-            displayOrder(or);
-            String myname = validate.checkString("Enter your name: ");
-            order.put(myname, or);
-            System.out.println();
-        }
-
-        public Model getItem(ArrayList<Model> models, int item) {
-            int count = 1;
-            for (Model model : models) {
-                if (model.getFruitQuantity() != 0) {
-                    count++;
-                }
-                if (count - 1 == item) {
-                    return model;
-                }
-            }
-            return null;
-        }
-
-        public void viewOrder(Hashtable<String, ArrayList<Order>> or) {
-            for (String name : or.keySet()) {
-                System.out.println("Buyer: " + name );
-                ArrayList<Order> orders = or.get(name);
-                displayOrder(orders);
-            }
-        }
-
-        public void displayList(ArrayList<Model> mods) {
-            int count = 1;
-            System.out.printf("%-10s%-20s%-20s%-15s\n", "Item", "Fruit name", "Origin", "Price");
-            for (Model md : mods) {
-                if (md.getFruitQuantity() != 0) {
-                    System.out.printf("%-10d%-20s%-20s%-15.0f$\n", count++, md.getFruitQuantity(), md.getOrigin(), md.getFruitPrice());
-                }
-            }
-        }
-
-        public void displayOrder(ArrayList<Order> or) {
-            double check = 0;
-            System.out.printf("%15s%15s%15s%15s\n", 
-                        "Product", "Quantity", 
-                        "Price", "Amount");
-            for (Order order : or) {
-                System.out.printf("%15s%15d%15.0f$%15.0f$\n", order.getFruitName(), 
-                    order.getFruitQuantity(), order.getFruitPrice(), 
-                    order.getFruitPrice() * order.getFruitQuantity());
-                check += order.getFruitPrice() * order.getFruitQuantity();
-            }
-            System.out.println("Totoal: " + check);
+        //Model newFruit = new Model(id, name, price, quantity, origin);
         }
     }
+    
+    public void shop(ArrayList<Model> mods, Hashtable<String, ArrayList<Order>> order) {
+        if (mods == null) {
+            System.out.print("Empty");
+        }
+        ArrayList<Order> or = new ArrayList<>();
+            // System.out.print("Enter fruit: ");
+            // int id = 1;
+        boolean ordering = true;
+        do {
+            displayList(mods);
+            System.out.print("Enter item to buy: ");
+            //int item  = validate.checkInt("Enter item to buy: ");
+            int item = validate.checkIntLim(1, mods.size());
+            //Model mods = fruits.get(item - 1);
+            Model md = getItem(mods, item);
+            System.out.print("Enter quantity: ");
+            int quantity = validate.checkIntLim(1, md.getFruitQuantity());
+            md.setFruitQuantity(md.getFruitQuantity() - quantity);
+
+            if (!validate.checkExistItem(or, md.getFruitID())) {
+                for (Order orderin : or) {
+                    if (orderin.getFruitID().equalsIgnoreCase(md.getFruitID())) {
+                        orderin.setFruitQuantity(orderin.getFruitQuantity() + quantity );
+                    }
+                }
+            }
+            else {
+                Order neworder = new Order(md.getFruitID(), md.getFruitName(), quantity, md.getFruitPrice());
+                or.add(neworder);
+                // or.add(new Order(md.getFruitID(), md.getFruitName(), quantity, md.getFruitPrice()));
+            }
+            String check = validate.YorN("Do you want to continue? (Y/N): ");
+            if (check.equalsIgnoreCase("N")) {
+                ordering = false;
+            } 
+            else if (check.equalsIgnoreCase("Y")) {
+                ordering = true;
+            }
+                //Model newFruit = new Model(id, name, price, quantity, origin);
+                
+        }
+        while (ordering);
+        displayOrder(or);
+        String myname = validate.checkString("Enter your name: ");
+        order.put(myname, or);
+        System.out.println();
+    }
+
+    public Model getItem(ArrayList<Model> models, int item) {
+        int count = 1;
+        for (Model model : models) {
+            if (model.getFruitQuantity() != 0) {
+                count++;
+            }
+            if (count - 1 == item) {
+                return model;
+            }
+        }
+        return null;
+    }
+
+    public void viewOrder(Hashtable<String, ArrayList<Order>> or) {
+        for (String name : or.keySet()) {
+            System.out.println("Buyer: " + name );
+            ArrayList<Order> orders = or.get(name);
+            displayOrder(orders);
+        }
+    }
+
+    public void displayList(ArrayList<Model> mods) {
+        int count = 1;
+        System.out.printf("%-10s%-20s%-20s%-20s%-15s\n", "Item", "Fruit name", "Quantity", "Origin", "Price");
+        for (Model md : mods) {
+            if (md.getFruitQuantity() != 0) {
+                System.out.printf("%-10d%-20s%-20s%-20s%-15.0f$\n", count++, md.getFruitName(), md.getFruitQuantity(), md.getOrigin(), md.getFruitPrice());
+            }
+        }
+    }
+
+    public void displayOrder(ArrayList<Order> or) {
+        double check = 0;
+        System.out.printf("%15s%15s%15s%15s\n", 
+                    "Product", "Quantity", 
+                    "Price", "Amount");
+        for (Order order : or) {
+            System.out.printf("%15s%15d%15.0f$%15.0f$\n", order.getFruitName(), 
+                order.getFruitQuantity(), order.getFruitPrice(), 
+                order.getFruitPrice() * order.getFruitQuantity());
+            check += order.getFruitPrice() * order.getFruitQuantity();
+        }
+        System.out.println("Totoal: " + check);
+    }
+}
