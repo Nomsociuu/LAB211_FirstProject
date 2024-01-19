@@ -5,10 +5,10 @@ public class Report {
     private String course;
     private String name;
 
-    public Report(String course, String name) {
+    public Report(String course, String name, int coursenumber) {
         this.name = name;
         this.course = course;
-        //this.coursenumber = coursenumber;
+        this.coursenumber = coursenumber;
     }
 
     public int getCoursenumber() {

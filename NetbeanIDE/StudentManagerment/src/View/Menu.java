@@ -7,6 +7,7 @@ public abstract class Menu {
 
     protected String title;
     protected ArrayList<String> list = new ArrayList();
+    Scanner sc = new Scanner(System.in);
 
     public Menu() {
     }
@@ -42,6 +43,29 @@ public abstract class Menu {
             execute(choice);
         } while (choice > 0 && choice < list.size());
 
+    }
+    
+    public String courseMenu() {
+        String course = null;
+        System.out.println("1. Java");
+        System.out.println("2. .Net");
+        System.out.println("3. C/C++");
+        System.out.print("Enter your course: ");
+        int choice = sc.nextInt();
+        switch (choice) {
+            case 1:
+                course = "Java";
+                break;
+            case 2:
+                course = ".Net";
+                break;
+            case 3:
+                course = "C/C++";
+                break;
+            default:
+                System.out.println("Invalid choice. Please try again.");
+        }
+        return course;
     }
 
 }
