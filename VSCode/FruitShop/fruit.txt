@@ -1,0 +1,5 @@
+1, orange, 20, 2, HCM
+2, apple, 10, 4, HN
+3, lemon, 15, 3, DN
+4, coconut, 10, 10, BT
+5, water melon, 30, 30, DD
