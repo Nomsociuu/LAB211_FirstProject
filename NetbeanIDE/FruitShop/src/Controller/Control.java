@@ -172,10 +172,10 @@ import java.util.*;
 
         public void displayList(ArrayList<Model> mods) {
             int count = 1;
-            System.out.printf("%-10s%-20s%-20s%-15s\n", "Item", "Fruit name", "Origin", "Price");
+            System.out.printf("%-10s%-20s%-20s%-20s%-15s\n", "Item", "Fruit name", "Quantity", "Origin", "Price");
             for (Model md : mods) {
                 if (md.getFruitQuantity() != 0) {
-                    System.out.printf("%-10d%-20s%-20s%-15.0f$\n", count++, md.getFruitQuantity(), md.getOrigin(), md.getFruitPrice());
+                    System.out.printf("%-10d%-20s%-20s%-20s%-15.0f$\n", count++, md.getFruitName(), md.getFruitQuantity(), md.getOrigin(), md.getFruitPrice());
                 }
             }
         }
