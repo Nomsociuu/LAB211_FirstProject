@@ -6,6 +6,14 @@ public class Order {
 
     private String customerName;
     private ArrayList<Fruit> orderedFruits = new ArrayList<>();
+
+    public ArrayList<Fruit> getOrderedFruits() {
+        return orderedFruits;
+    }
+
+    public void setOrderedFruits(ArrayList<Fruit> orderedFruits) {
+        this.orderedFruits = orderedFruits;
+    }
     
 
     public void addFruit(Fruit fruit) {
@@ -16,25 +24,15 @@ public class Order {
         return customerName;
     }
 
-    public double calculateTotalAmount() {
-        double totalAmount = 0;
+    public int calculateTotalAmount() {
+        int totalAmount = 0;
         for (Fruit fruit : orderedFruits) {
             totalAmount += fruit.calculateAmount();
         }
         return totalAmount;
     }
 
-    public void displayOrder() {
-
-        for (Fruit fruit : orderedFruits) {
-            System.out.print("| " + fruit.getName()
-                    + " | " + fruit.getQuantity()
-                    + " | " + fruit.getPrice()
-                    + " | " + String.format("%.2f", fruit.calculateAmount()) + " |\n");
-        }
-
-        System.out.print("Total: " + String.format("%.2f", calculateTotalAmount()) + " $\n");
-    }
+    
 
     public void setCustomerName(String customerName) {
         this.customerName = customerName;

@@ -59,7 +59,7 @@ public class Fruit {
         this.quantity = quantity;
     }
 
-    public double calculateAmount() {
+    public int calculateAmount() {
         return quantity * price;
     }
 }

@@ -11,18 +11,26 @@ import java.io.PrintWriter;
 import java.text.ParseException;
 
 import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.List;
 import java.util.Scanner;
 
 public class Menu {
 
     private ArrayList<Fruit> fruits = new ArrayList<>();
-    private ArrayList<Order> orders = new ArrayList<>();
-    private Fruit currentFruit = new Fruit();
+    private Hashtable<String, List<Fruit>> customerOrders = new Hashtable<>();
     Validate vali = new Validate();
-    Order order = new Order();
+    Order ord = new Order();
     Scanner scanner = new Scanner(System.in);
 
     public Menu() {
+        if (fruits.isEmpty()) {
+            try {
+                readDataFromFile("fruit.txt");
+            } catch (IOException | ParseException e) {
+                System.out.println("Error reading data from file: " + e.getMessage());
+            }
+        }
     }
 
     public void displayMainScreen() {
@@ -112,10 +120,10 @@ public class Menu {
         System.out.println("| ++ Item ++ | ++ Fruit Name ++ | ++ Origin ++ | ++ Price ++ |");
 
         for (Fruit fruit : fruits) {
-            String formattedId = String.format("%12d", fruit.getId());
-            String formattedName = String.format(" %-23s", fruit.getName());
-            String formattedOrigin = String.format(" %-15s", fruit.getOrigin());
-            String formattedPrice = String.format(" %d$", fruit.getPrice());
+            String formattedId = String.format("%7d", fruit.getId());
+            String formattedName = String.format(" %18s", fruit.getName());
+            String formattedOrigin = String.format(" %15s", fruit.getOrigin());
+            String formattedPrice = String.format(" %8d$", fruit.getPrice());
 
             // Combine formatted values and print the row
             String row = String.format("%s %s %s %s", formattedId, formattedName, formattedOrigin, formattedPrice);
@@ -127,26 +135,41 @@ public class Menu {
 
     public void viewOrders() {
         System.out.println("\nOrders List:");
-        
-        for (Order order : orders) {
-            System.out.println("\nCustomer: " + order.getCustomerName());
+        String Amount = "0";
+
+
+        for (String customer : customerOrders.keySet()) {
+            System.out.println("\nCustomer: " + customer);
             System.out.println("Product | Quantity | Price | Amount");
-            order.displayOrder();
+
+            // Retrieve and display the list of items for each customer
+            List<Fruit> customerItems = customerOrders.get(customer);
+            for (Fruit fruit : customerItems) {
+                String formattedName = String.format("%6s", fruit.getName());
+            String formattedQuantity = String.format(" %7d", fruit.getQuantity());
+            String formattedPrice = String.format(" %7d", fruit.getPrice());
+            Amount = String.format("%7d", fruit.calculateAmount());
+ 
+
+            // Combine formatted values and print the row
+            String row = String.format("%s %s %s$ %s$",  formattedName, formattedQuantity, formattedPrice,   Amount);
+            System.out.println(row);
+            
+            }
+            System.out.print("Total: " + String.format("%s", Amount) + "$\n");
         }
-        
+
         System.out.println();
     }
 
     public void shopping() {
         displayAllFruits();
 
-        Scanner scanner = new Scanner(System.in);
-
         Order order = new Order();
         System.out.print("Input customer name: ");
         String name = scanner.nextLine();
         order.setCustomerName(name);
-        
+
         String orderChoice;
         do {
             System.out.print("Select Item to order: ");
@@ -161,22 +184,21 @@ public class Menu {
             selectedFruit.setQuantity(quantity);
 
             order.addFruit(selectedFruit);
-            orders.add(order);
-            System.out.println("Order placed successfully!");
 
-            System.out.print("Do you want to order now (Y/N)? ");
+            System.out.print("Do you want to order more (Y/N)? ");
             orderChoice = scanner.next();
-            
-        } while (orderChoice.equalsIgnoreCase("N"));
-        
-        System.out.println("Is there any customer else ?");
-        if(scanner.next().equalsIgnoreCase("N")){
-            viewOrders();
-        }
-        else{
-            shopping();
-        }
 
+        } while (orderChoice.equalsIgnoreCase("Y"));
+
+        // Add the order to the hashtable using the customer's name as the key
+        customerOrders.computeIfAbsent(name, k -> new ArrayList<>()).addAll(order.getOrderedFruits());
+
+        System.out.println("Orders placed successfully!");
+        
+
+        
+        viewOrders();
+        scanner.nextLine();
     }
 
 }
