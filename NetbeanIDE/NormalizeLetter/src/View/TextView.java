@@ -9,9 +9,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class TextView {
-    
-    public TextView() {
-    }
    
     public void displayMessage(String message) {
         System.out.println(message);
@@ -27,8 +24,11 @@ public class TextView {
             while ((line = reader.readLine()) != null) {
                 if (!line.trim().isEmpty()) {
                     line = removeBlankLineBetweenLines(line);
-                    line = removeSpacesInsideQuotes(line);
+                    
                     line = normalizeOneSpaceBetweenWords(line);
+                    line = removeSpacesInsideQuotes(line);
+                    //line = addSpaceInsideQuotes(line);
+                    
                     line = dotLastLine(line);
                     line = normalizeOneSpaceAfterPunctuation(line);
                     line = capitalizeAfterDot(line);
@@ -59,33 +59,33 @@ public class TextView {
         return sb.toString();
     }
 
-    private static String dotLastLine(String str) {
+    private String dotLastLine(String str) {
         return str.endsWith(".") ? str : str + ".";
     }
 
-    private static String normalizeOneSpaceAfterPunctuation(String line) {
+    private String normalizeOneSpaceAfterPunctuation(String line) {
         return line.replaceAll("\\s(?=[.,:])", "");
     }
 
-    private static String normalizeOneSpaceBetweenWords(String line) {
+    private String normalizeOneSpaceBetweenWords(String line) {
         return line.replaceAll("\\s+", " ");
     }
 
-    private static String removeSpacesInsideQuotes(String line) {
-        line = line.replaceAll("\"\\s+", "\"");
-        line = line.replaceAll("\\s+\"", "\"");
+    private String removeSpacesInsideQuotes(String line) {
+        String pattern = "\"\\s+(.*?)\\s+\"";
+        line = line.replaceAll(pattern, "\"$1\"");
         return line;
     }
 
-    private static String removeBlankLineBetweenLines(String line) {
+    private String removeBlankLineBetweenLines(String line) {
         return line.trim();
     }
 
-    private static String capitalizeFirstWordInFirstLine(String line, boolean isFirstLine) {
+    private String capitalizeFirstWordInFirstLine(String line, boolean isFirstLine) {
         return isFirstLine ? line.substring(0, 1).toUpperCase() + line.substring(1) : line;
     }
 
-    private static String removeSpaceBeforeCommaAndDot(String line) {
+    private String removeSpaceBeforeCommaAndDot(String line) {
         return line.replaceAll("(?<!\\s)[.,](?!\\s)", "$0 ");
     }
 }

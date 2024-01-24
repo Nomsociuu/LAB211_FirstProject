@@ -11,7 +11,7 @@ import java.util.Scanner;
 public class TextController extends Menu {
 
     private final TextView view;
-    public List<TextModel> textModels;
+    private List<TextModel> textModels;
 
     public TextController(TextView view) {
         super("WELCOME TO FILE NORMALIZER \n--------------------------------",
