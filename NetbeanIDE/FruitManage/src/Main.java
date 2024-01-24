@@ -9,3 +9,6 @@ public class Main {
 
     }
 }
+//validate 
+//loi amount kh cộng dồn với nhau thành total
+//cap nhap stock cua don hang
