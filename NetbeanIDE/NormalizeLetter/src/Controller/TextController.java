@@ -38,13 +38,17 @@ public class TextController {
 
             while ((line = reader.readLine()) != null) {
                 if (!line.trim().isEmpty()) {
-                    line = normalizeOneSpaceBetweenWords(line);
-                    line = normalizeOneSpaceAfterPunctuation(line);
-                    line = removeBlankLineBetweenLines(line);
-                    line = CapitalNormal(line);
-                    line = removeSpacesBeforeAndAfterQuotes(line);
-                    line = capitalizeFirstWordInFirstLine(line, isFirstLine);
-                    line = removeSpaceBeforeCommaAndDot(line);
+                    
+                    
+                    line = removeBlankLineBetweenLines(line); // ghép dòng
+                    line = removeSpacesInsideQuotes(line); // xóa khoảng cách trong ngoặc
+                    line = normalizeOneSpaceBetweenWords(line); // thêm 1 khảng cách giữa các chữ
+                    
+                    line = dotLastLine(line); //thêm dấu chấm cuối văn bản
+                    line = normalizeOneSpaceAfterPunctuation(line); // thêm 1 dấu cách sau : , .
+                    line = CapitalNormal(line); // Viết hoa chữ cái dầu sau dấu chấm và chữ cái phía sau viết thường
+                    line = capitalizeFirstWordInFirstLine(line, isFirstLine); //Viết hoa chữ cái đầu tiên trong văn bản
+                    line = removeSpaceBeforeCommaAndDot(line); //xóa dấu cách trước . và ,
 
                     writer.write(line);
                     isFirstLine = false;
@@ -56,16 +60,13 @@ public class TextController {
         }
     }
 
-    // Add other controller-related methods as needed
     //done
     private static String normalizeOneSpaceBetweenWords(String line) {
         return line.replaceAll("\\s+", " ");
     }
 
-//why error ?
     private static String normalizeOneSpaceAfterPunctuation(String line) {
         line = line.replaceAll("\\s(?=[.,:])", "");
-
         return line;
     }
 
@@ -93,16 +94,15 @@ public class TextController {
     }
 
 //done 99% : problem delete all space front and behind "
-    private static String removeSpacesBeforeAndAfterQuotes(String line) {
-        // Remove spaces before and after quotes
-        line = line.replaceAll("\\s*\"\\s*", "\"");
+    private static String removeSpacesInsideQuotes(String line) {
+    // Loại bỏ khoảng trắng sau dấu ngoặc kép
+    line = line.replaceAll("\"\\s+", "\"");
 
-        // Remove extra spaces inside quotes
-        line = line.replaceAll("\"\\s+", "\"");
-        line = line.replaceAll("\\s+\"", "\"");
+    // Loại bỏ khoảng trắng trước dấu ngoặc kép từ kí tự gần nhất
+    line = line.replaceAll("\\s+\"", "\"");
 
-        return line;
-    }
+    return line;
+}
 
 //done
     private static String capitalizeFirstWordInFirstLine(String line, boolean isFirstLine) {
@@ -142,6 +142,15 @@ public class TextController {
             }
         } catch (IOException e) {
             throw new IOException("Error writing file: " + e.getMessage());
+        }
+    }
+    
+    public String dotLastLine(String str) {
+        if (str.endsWith(".")) {
+            return str;
+        }
+        else {
+            return str + ".";
         }
     }
 
