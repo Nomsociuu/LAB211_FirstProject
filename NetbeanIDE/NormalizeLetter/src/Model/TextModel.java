@@ -9,9 +9,6 @@ public class TextModel {
         this.inputFileName = inputFileName;
         this.outputFileName = outputFileName;
     }
-    public TextModel(){
-        
-    }
 
     public String getInputFileName() {
         return inputFileName;

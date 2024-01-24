@@ -3,7 +3,6 @@ package Controller;
 import Model.TextModel;
 import View.Menu;
 import View.TextView;
-
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -45,10 +44,10 @@ public class TextController extends Menu {
 
     private void addFile() {
         System.out.println("Enter the input file name: ");
-        String inputFileName = new Scanner(System.in).next(); // You can modify this based on your requirements
+        String inputFileName = new Scanner(System.in).next();
 
         System.out.println("Enter the output file name: ");
-        String outputFileName = new Scanner(System.in).next(); // You can modify this based on your requirements
+        String outputFileName = new Scanner(System.in).next();
 
         TextModel textModel = new TextModel(inputFileName, outputFileName);
         textModels.add(textModel);

@@ -7,56 +7,22 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.List;
-import java.util.Scanner;
 
 public class TextView {
     
-    private  List<TextModel> textModels;
-
     public TextView() {
     }
-    
    
     public void displayMessage(String message) {
         System.out.println(message);
     }
     
-    public void addFile() {
-        System.out.println("Enter the input file name: ");
-        String inputFileName = new Scanner(System.in).next(); // You can modify this based on your requirements
-
-        System.out.println("Enter the output file name: ");
-        String outputFileName = new Scanner(System.in).next(); // You can modify this based on your requirements
-
-        TextModel textModel = new TextModel(inputFileName, outputFileName);
-        textModels.add(textModel);
-
-        displayMessage("File names added successfully.");
-    }
-
-    public void normalizeFiles() {
-        if (!textModels.isEmpty()) {
-            for (TextModel textModel : textModels) {
-                try {
-                    normalizeText(textModel);
-                    displayMessage("Text normalization completed successfully for file: " + textModel.getInputFileName());
-                } catch (IOException e) {
-                    e.printStackTrace();
-                    displayMessage("Error normalizing file: " + e.getMessage());
-                }
-            }
-        } else {
-            displayMessage("No files added. Please add files first.");
-        }
-    }
-
     public void normalizeText(TextModel textModel) throws IOException {
         try (BufferedReader reader = new BufferedReader(new FileReader(textModel.getInputFileName()));
              BufferedWriter writer = new BufferedWriter(new FileWriter(textModel.getOutputFileName()))) {
 
             boolean isFirstLine = true;
-            String line;
+            String line;        
 
             while ((line = reader.readLine()) != null) {
                 if (!line.trim().isEmpty()) {
