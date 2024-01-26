@@ -62,7 +62,6 @@ public class TextController extends Menu {
                     view.normalizeText(textModel);
                     view.displayMessage("Text normalization completed successfully for file: " + textModel.getInputFileName());
                 } catch (IOException e) {
-                    e.printStackTrace();
                     view.displayMessage("Error normalizing file: " + e.getMessage());
                 }
             }
