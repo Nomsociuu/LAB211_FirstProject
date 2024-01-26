@@ -13,10 +13,11 @@ public class View {
 
     private Scanner scanner = new Scanner(System.in);
     private List<EastAsiaCountries> countriesList = new ArrayList<>();
+    final Validate val = new Validate();
 
 
     public int getMenuOption() {
-        System.out.println("MENU");
+        System.out.println("                                  MENU");
         System.out.println("==========================================================================");
         System.out.println("1. Input the information of 11 countries in East Asia");
         System.out.println("2. Display the information of country you've just input");
@@ -28,23 +29,30 @@ public class View {
         return scanner.nextInt();
     }
 
+
     public EastAsiaCountries getCountryInformation() {
         System.out.println("Enter information for a country:");
-        System.out.print("Country Code: ");
-        String code = scanner.next();
-        System.out.print("Country Name: ");
-        String name = scanner.next();
-        System.out.print("Total Area: ");
-        float area = scanner.nextFloat();
-        System.out.print("Terrain: ");
-        String terrain = scanner.next();
+        // System.out.print("Country Code: ");
+        // String code = scanner.next();
+        String code = val.checkStringBetter("Country Code: ");
+        // System.out.print("Country Name: ");
+        // scanner.nextLine();
+        // String name = scanner.nextLine();
+        String name = val.checkStringBasic("Country Name: ");
+        // System.out.print("Total Area: ");
+        // float area = scanner.nextFloat();
+        float area = val.checkFloat("Total Area: ");
+        // System.out.print("Terrain: ");
+        // String terrain = scanner.nextLine();
+        String terrain = val.checkStringBetter("Terrain: ");
 
         return new EastAsiaCountries(code, name, area, terrain);
     }
 
     public String getSearchName() {
         System.out.print("Enter the country name to search: ");
-        return scanner.next();
+        scanner.nextLine();
+        return scanner.nextLine();
     }
 
     public void displayCountryInformation(List<EastAsiaCountries> countries) {
@@ -89,26 +97,26 @@ public class View {
 
     public void searchInformationByName() {
         try {
-            String searchName = getSearchName();
-            EastAsiaCountries[] result = searchInformationByName(searchName);
+            String partialName = getSearchName();
+            List<EastAsiaCountries> result = searchInformationByName(partialName);
             displayMessage("Search Result:");
-            displayCountryInformation(Arrays.asList(result));
+            displayCountryInformation(result);
         } catch (Exception e) {
             displayMessage("No matching country found.");
         }
     }
 
-    private EastAsiaCountries[] searchInformationByName(String name) throws Exception {
+    private List<EastAsiaCountries> searchInformationByName(String partialName) throws Exception {
         List<EastAsiaCountries> result = new ArrayList<>();
         for (EastAsiaCountries country : countriesList) {
-            if (country.getCountryName().equalsIgnoreCase(name)) {
+            if (country.getCountryName().toLowerCase().contains(partialName.toLowerCase())) {
                 result.add(country);
             }
         }
         if (result.isEmpty()) {
             throw new Exception("No matching country found.");
         }
-        return result.toArray(new EastAsiaCountries[0]);
+        return result;
     }
 
     public void sortInformationByAscendingOrder() {

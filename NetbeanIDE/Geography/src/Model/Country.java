@@ -7,7 +7,7 @@ public class Country {
     protected float totalArea;
 
     public Country() {
-       
+    
     }
 
     public Country(String countryCode, String countryName, float totalArea) {
@@ -39,5 +39,10 @@ public class Country {
 
     public void setTotalArea(float totalArea) {
         this.totalArea = totalArea;
+    }
+
+    public String toString() {
+        return String.format("%-15s %-15s %-15s",
+                getCountryCode(), getCountryName(), getTotalArea());
     }
 }
