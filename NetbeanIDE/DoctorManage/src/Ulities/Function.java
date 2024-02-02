@@ -1,5 +1,6 @@
-package View;
+package Ulities;
 
+import Ulities.Validate;
 import Model.Doctor;
 import Model.DoctorHash;
 import java.util.Map;
