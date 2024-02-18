@@ -1,4 +1,4 @@
-package Controller;
+package Library;
 
 // import java.text.DecimalFormat;
 // import java.math.RoundingMode;
@@ -6,7 +6,7 @@ import java.util.*;
 
 // import LAB211.BMI.Model.*;
 import Model.BMIdata;
-import Model.Validation;
+import Common.Validation;
 
 public class BMI {
 

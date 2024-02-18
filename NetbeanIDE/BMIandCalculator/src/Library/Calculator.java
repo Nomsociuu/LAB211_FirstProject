@@ -1,6 +1,6 @@
-package Controller;
+package Library;
 
-import Model.Validation;
+import Common.Validation;
 import Model.Calculatordata;
 
 import java.util.*;

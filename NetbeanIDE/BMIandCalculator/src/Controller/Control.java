@@ -2,8 +2,8 @@ package Controller;
 
 import View.Menu;
 
-import Controller.BMI;
-import Controller.Calculator;
+import Library.BMI;
+import Library.Calculator;
 
 public class Control extends Menu{
     final BMI BMICalc = new BMI();
