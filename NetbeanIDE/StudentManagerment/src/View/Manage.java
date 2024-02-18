@@ -1,7 +1,7 @@
-package Controller;
+package View;
 
 import Model.Student;
-import Model.Validate;
+import Common.Validate;
 import View.Menu;
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -11,41 +11,11 @@ import java.io.PrintWriter;
 import java.text.ParseException;
 import java.util.*;
 
-public class Controller extends Menu {
+public class Manage{
 
     final Scanner sc = new Scanner(System.in);
     List<Student> std = new ArrayList<>();
-
-    public Controller() {
-        super("WELCOME TO STUDENT MANAGEMENT \n--------------------------------",
-                new String[]{"Create student",
-                    "Find and sort student",
-                    "Update/Delete student",
-                    "Report",
-                    "Exit the program"});
-        std = new ArrayList<>();
-    }
-
-    @Override
-    public void execute(int choice) {
-        switch (choice) {
-            case 1 ->
-                createStudent();
-            case 2 ->
-                FindAndSortStudent();
-            case 3 ->
-                UpdateAndDeleteStudent();
-            case 4 -> {
-                displayAllStudents();
-                Report();
-            }
-            case 5 ->
-                System.out.println("Exited. Bye bye");
-            default ->
-                System.out.println("Invalid choice. Please try again.");
-        }
-    }
-
+    
     public void readDataFromFile(String filename) throws IOException, ParseException {
         try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
             String line;

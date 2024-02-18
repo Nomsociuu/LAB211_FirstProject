@@ -1,17 +1,18 @@
 package Controller;
 
+import Library.Utilities;
 import Model.*;
 import View.*;
 import java.util.*;
 
-public class Utilities extends Menu {
+public class Control extends Menu {
 
     private final Scanner sc = new Scanner(System.in);
 
     private final Model model = new Model();
-    private final Controller control = new Controller();
+    private final Utilities control = new Utilities();
 
-    public Utilities() {
+    public Control() {
         super("""
               ---------------------
               Sort and Search Utilities""", new String[]{
@@ -41,7 +42,7 @@ public class Utilities extends Menu {
     }
 
     public void runner() {
-        Utilities util = new Utilities();
+        Control util = new Control();
         util.run();
     }
 

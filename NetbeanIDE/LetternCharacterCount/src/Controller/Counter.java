@@ -4,6 +4,7 @@
  */
 package Controller;
 
+import View.Controller;
 import java.util.*;
 
 import Model.*;
@@ -22,40 +23,14 @@ public class Counter extends Menu{
     public void execute(int choice) {
         switch (choice) {
             case 1:
-                System.out.print("Enter a string: ");
-                String str = scanner.nextLine();
-                models.setString(str);
+                control.inpuutString();
                 break;
             case 2:
-                System.out.println();
-                String Charc = models.getString();
-                if (Charc == null) {
-                    System.out.println("Empty string, moving to option: \"Enter a string\"...");
-                    System.out.print("Enter a string: ");
-                    String stringCc = scanner.nextLine();
-                    models.setString(stringCc);
-                    String temp1 = models.getString();
-                    control.CharacterCount(temp1);
-                }
-                else {
-                    control.CharacterCount(Charc);
-                }
+                control.charCount();
                 //System.out.println(models.getCharCount());
                 break;
             case 3:
-                System.out.println();
-                String Wordc = models.getString();
-                if (Wordc == null) {
-                    System.out.println("Empty string, moving to option: \"Enter a string\"...");
-                    System.out.print("Enter a string: ");
-                    String stringCc = scanner.nextLine();
-                    models.setString(stringCc);
-                    String temp1 = models.getString();
-                    control.CharacterCount(temp1);
-                }
-                else{
-                    control.WordCount(Wordc);
-                }
+                control.wCount();
                 //System.out.println(models.getWordCount());
                 break;
             case 4:

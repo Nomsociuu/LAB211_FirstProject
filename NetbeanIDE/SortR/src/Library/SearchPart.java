@@ -1,4 +1,4 @@
-package controller;
+package Library;
 
 public class SearchPart {
 

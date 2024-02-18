@@ -1,17 +1,19 @@
 
-import Controller.Controller;
+import View.Manage;
+import Controller.Control;
 import java.io.IOException;
 import java.text.ParseException;
 
 public class Main {
     public static void main(String[] args) {
-        Controller controller = new Controller();
+        Manage mng = new Manage();
+        Control control = new Control();
         try {
-            controller.readDataFromFile("student.txt");
+            mng.readDataFromFile("student.txt");
         } catch (IOException | ParseException e) {
             System.out.println("Error");
         }
-        controller.run();
+        control.run();
     }
 }
 

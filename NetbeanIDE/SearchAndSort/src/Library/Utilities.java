@@ -1,8 +1,8 @@
-package Controller;
+package Library;
 
 import java.util.*;
 
-public class Controller {
+public class Utilities {
 
     static final Scanner scan = new Scanner(System.in);
 

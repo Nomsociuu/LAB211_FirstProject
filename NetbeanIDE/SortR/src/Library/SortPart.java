@@ -1,5 +1,4 @@
-
-package controller;
+package Library;
 
 import java.util.Random;
 

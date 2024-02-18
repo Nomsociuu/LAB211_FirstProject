@@ -5,7 +5,7 @@ import Model.Candidate;
 import Model.ExperienceCandidate;
 import Model.FresherCandidate;
 import Model.InternCandidate;
-import Model.Validate;
+import Common.Validate;
 import java.util.ArrayList;
 import java.util.Scanner;
 

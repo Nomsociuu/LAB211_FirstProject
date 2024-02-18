@@ -1,7 +1,8 @@
-package controller;
+package Controller;
 
+import View.Menu;
 import Model.Model;
-import View.View;
+import Library.SortPart;
 import java.util.List;
 import java.util.Scanner;
 
@@ -9,11 +10,11 @@ public class Controller {
 
     private final Model model;
     private final SortPart sorting;
-    private final View view;
+    private final Menu view;
 
     private List<Model> mode;
 
-    public Controller(Model model, View view, SortPart sorting) {
+    public Controller(Model model, Menu view, SortPart sorting) {
         this.model = model;
         this.view = view;
         this.sorting = sorting;
@@ -158,14 +159,5 @@ public class Controller {
             }
         }
         return -1;
-    }
-
-    public static void main(String[] args) {
-        Model model = new Model();
-        View view = new View();
-        SortPart sorting = new SortPart();
-        Controller controller = new Controller(model, view, sorting);
-
-        controller.run();
     }
 }

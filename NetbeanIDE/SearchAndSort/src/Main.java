@@ -3,7 +3,7 @@ import Controller.*;
 public class Main {
 
     public static void main(String[] args) {
-        Utilities util = new Utilities();
+        Control util = new Control();
         util.runner();
     }
 }

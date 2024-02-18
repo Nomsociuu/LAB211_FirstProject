@@ -1,9 +1,11 @@
-package Model;
+package Common;
 
 import java.util.*;
 
 import Controller.*;
 import Model.*;
+import Model.Model;
+import Model.Order;
 public class Validate {
     final Scanner sc = new Scanner(System.in);
     //* Basic check */

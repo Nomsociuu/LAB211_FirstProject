@@ -1,5 +1,7 @@
-package Model;
+package Common;
 
+import Model.Report;
+import Model.Student;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
