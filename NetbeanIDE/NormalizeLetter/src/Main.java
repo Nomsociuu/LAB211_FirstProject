@@ -1,11 +1,11 @@
 
 import Controller.TextController;
-import View.TextView;
+import Library.Library;
 
 public class Main {
                                     
     public static void main(String[] args) {
-        TextView view = new TextView();
+        Library view = new Library();
         TextController controller = new TextController(view);
         controller.run();
     }

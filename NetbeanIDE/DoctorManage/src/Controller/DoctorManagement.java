@@ -1,7 +1,7 @@
 package Controller;
 
 import View.Menu;
-import Ulities.Function;
+import Utilities.Function;
 
 public class DoctorManagement extends Menu {
     

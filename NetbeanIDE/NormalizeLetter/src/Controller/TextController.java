@@ -2,7 +2,7 @@ package Controller;
 
 import Model.TextModel;
 import View.Menu;
-import View.TextView;
+import Library.Library;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,10 +10,10 @@ import java.util.Scanner;
 
 public class TextController extends Menu {
 
-    private final TextView view;
+    private final Library view;
     private List<TextModel> textModels;
 
-    public TextController(TextView view) {
+    public TextController(Library view) {
         super("WELCOME TO FILE NORMALIZER \n--------------------------------",
                 new String[]{"Input file to read",
                     "Normalizing file",

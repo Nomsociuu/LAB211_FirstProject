@@ -1,5 +1,6 @@
 package Controller;
 
+import Util.Utilities;
 import java.io.*;
 import java.util.Scanner;
 
@@ -10,7 +11,7 @@ public class Reader extends Menu {
     //! file can be everywhere, can't fix
     // * When the code run, please don't fix it!//
     private Model model = new Model();
-    private newControl controller = new newControl();
+    private Utilities controller = new Utilities();
     private final Scanner sc = new Scanner(System.in);
 
     public Reader() {

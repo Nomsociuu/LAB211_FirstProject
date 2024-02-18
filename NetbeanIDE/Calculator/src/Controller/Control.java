@@ -1,10 +1,13 @@
 package Controller;
 
+import Common.Validate;
+import Library.Calculator;
 import java.util.*;
 import java.io.*;
 
 import View.*;
 import Model.*;
+import Library.*;
 
 public class Control extends Menu{
     public Control() {
@@ -56,70 +59,8 @@ public class Control extends Menu{
     //     // printSquare(A, B, C);
     // }
 
-    public boolean printEven(double result) {
-        if (result % 2 == 0) {
-            return true;
-        }
-        else {
-            return false;
-        }
-    } 
-    
-    public boolean printOdd(double result) {
-        if (result % 2 != 0) {
-            return true;
-        }
-        else {
-            return false;
-        }
-    } 
-
-    public boolean printSquare(double result) {
-        if (result > 0) {
-            int sr = (int)Math.sqrt(result);
-            return (sr *sr==result);
-        }
-        return false;
-    } 
-
-    public void checkEven(List<Double> values) {
-        String regex = "";
-        System.out.print("Even number: ");
-        for (Double value : values) {
-            if (printEven(value)){
-                System.out.print(regex + value);
-                regex = ", ";
-            }
-        }
-        System.out.println();
-    }
-
-    public void checkOdd(List<Double> values) {
-        String regex = "";
-        System.out.print("Odd number: ");
-        for (Double value : values) {
-            if (printOdd(value)){
-                System.out.print(regex + value);
-                regex = ", ";
-            }
-        }
-        System.out.println();
-    }
-
-    public void checkSquare(List<Double> values) {
-        String regex = "";
-        System.out.print("Square number: ");
-        for (Double value : values) {
-            if (printSquare(value)){
-                System.out.print(regex + value);
-                regex = ", ";
-            }
-        }
-        System.out.println();
-    }
-
     double A, B, C;
-
+    final Library lib = new Library();
     public void execute(int choice) {
         List<Double> values = new ArrayList<>();
         switch (choice) {
@@ -135,9 +76,9 @@ public class Control extends Menu{
                 }
                 else {
                     System.out.println("Solution: " + values.get(0));
-                    checkEven(values);
-                    checkOdd(values);
-                    checkSquare(values);
+                    lib.checkEven(values);
+                    lib.checkOdd(values);
+                    lib.checkSquare(values);
 
                 }
                 //calc.SuperlativeEquation();
@@ -158,9 +99,9 @@ public class Control extends Menu{
                 else {
                     System.out.println("x1 = " + values.get(0));
                     System.out.println("x2 = " + values.get(1));
-                    checkEven(values);
-                    checkOdd(values);
-                    checkSquare(values);
+                    lib.checkEven(values);
+                    lib.checkOdd(values);
+                    lib.checkSquare(values);
                 }
                 
 

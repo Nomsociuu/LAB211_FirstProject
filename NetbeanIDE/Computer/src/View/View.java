@@ -1,7 +1,7 @@
 package View;
 
 import Model.Model;
-import Model.Validator;
+import Common.Validator;
 import java.text.DecimalFormat;
 import java.util.Scanner;
 
