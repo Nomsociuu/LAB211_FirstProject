@@ -1,0 +1,10 @@
+Cable, Day cap
+TV, TV
+Fan, Quat
+Book, Sach
+Phone, Dien thoai
+Keyboard, Ban phim
+Cat, Con meo
+Gas, Ga
+Dog, Con cho
+Display, Man hinh
