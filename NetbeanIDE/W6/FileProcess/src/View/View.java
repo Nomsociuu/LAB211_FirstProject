@@ -9,9 +9,7 @@ public class View {
     private final Scanner scanner = new Scanner(System.in);
 
     
-    public void displayMenu() {
-
-            
+    public void displayMenu() {       
         System.out.println("========== File Processing =========");
         System.out.println("1. Find person info");
         System.out.println("2. Copy Text to new file");
