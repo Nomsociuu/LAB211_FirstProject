@@ -32,7 +32,7 @@ public abstract class Menu<T> {
 
     public int getChoice() {
         display();
-        return vali.getInt("Enter your choice", 1, choice.size() + 1);
+        return vali.getIntInRange("Enter your choice", 1, choice.size() + 1);
     }
 
     public abstract void execute(int n);

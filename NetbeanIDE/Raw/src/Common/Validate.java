@@ -19,84 +19,8 @@ public class Validate {
 //---------------------------------------------------------------------------------------------------------------------- 
     private static final String DATE_FORMAT = "yyyy/MM/dd";
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT);
-
-    public int getAge(String msg) {
-        Scanner sc = new Scanner(System.in);
-        int number;
-        while (true) {
-            System.out.print(String.format("%s", msg));
-            try {
-                number = sc.nextInt();
-                if (number >= 18 && number <=50) {
-                    return number;
-                } else {
-                    System.err.println("Please enter age in rage 18 to 50!");
-                }
-            } catch (InputMismatchException e) {
-                System.err.println("Just enter age in rage 18 to 50!");
-                sc.next();
-            }
-        }
-    }
     
-    public double getDoubleFromInput(String msg) {
-        Scanner sc = new Scanner(System.in);
-        double number;
-        while (true) {
-            System.out.print(String.format("%s", msg));
-            try {
-                number = sc.nextDouble();
-                if (number > 0) {
-                    return number;
-                } else {
-                    System.err.println("Please enter the number > 0 ");
-                }
-            } catch (InputMismatchException e) {
-                System.err.println("Just input the double number > 0 ");
-                sc.next();
-            }
-        }
-    }
-
-    public double getDouble(String msg, String msg2) {
-        Scanner sc = new Scanner(System.in);
-        double number;
-        while (true) {
-            System.out.print(String.format("%s", msg));
-            try {
-                number = sc.nextDouble();
-                if (number > 0) {
-                    return number;
-                } else {
-                    System.err.println("Please enter the double number > 0 ");
-                }
-            } catch (InputMismatchException | NumberFormatException e) {
-                System.err.println(msg2);
-                sc.next();
-            }
-        }
-    }
-
-    public float getFloatFromInput(String msg, float min) {
-        Scanner sc = new Scanner(System.in);
-        float number;
-        while (true) {
-            System.out.print(String.format("%s", msg));
-            try {
-                number = sc.nextFloat();
-                if (number > min) {
-                    return number;
-                } else {
-                    System.err.println("Please enter the float number > " + min);
-                }
-            } catch (InputMismatchException e) {
-                System.err.println("Just input the float number > 0 ");
-                sc.next();
-            }
-        }
-    }
-
-    public int getIntFromInput(String msg) {
+    public int getIntFromInput(String msg) { //re-enter Int till correct format
         Scanner sc = new Scanner(System.in);
         int number;
         while (true) {
@@ -115,35 +39,45 @@ public class Validate {
         }
     }
     
-    
-
-    public Date getDateFromInput(String msg) {
+    public float getFloatFromInput(String msg, float min) { //re-enter Float till correct format
         Scanner sc = new Scanner(System.in);
+        float number;
         while (true) {
-            System.out.print(String.format("Enter %s: ", msg));
-            String dateString = sc.nextLine();
-            if (!dateString.isEmpty()) {
-                try {
-                    Date date = dateFormat.parse(dateString);
-                    return date;
-                } catch (ParseException e) {
-                    System.err.println(String.format("Invalid date format. Please enter again (%s).", DATE_FORMAT));
+            System.out.print(String.format("%s", msg));
+            try {
+                number = sc.nextFloat();
+                if (number > min) {
+                    return number;
+                } else {
+                    System.err.println("Please enter the float number > " + min);
                 }
+            } catch (InputMismatchException e) {
+                System.err.println("Just input the float number > 0 ");
+                sc.next();
             }
         }
     }
-
-    public String getStringFromInput(String msg) {
+    
+    public double getDoubleFromInput(String msg) { //re-enter Double till correct format
         Scanner sc = new Scanner(System.in);
-        String s = null;
-        while (s == null || s.isEmpty()) {
+        double number;
+        while (true) {
             System.out.print(String.format("%s", msg));
-            s = sc.nextLine();
+            try {
+                number = sc.nextDouble();
+                if (number > 0) {
+                    return number;
+                } else {
+                    System.err.println("Please enter the number > 0 ");
+                }
+            } catch (InputMismatchException e) {
+                System.err.println("Just input the double number > 0 ");
+                sc.next();
+            }
         }
-        return s;
     }
-
-    public char getCharFromInput(String msg) {
+    
+    public char getCharFromInput(String msg) { //re-enter Char till correct format
         Scanner sc = new Scanner(System.in);
         char c = '\0';  // Default value
         boolean isValidInput = false;
@@ -162,8 +96,28 @@ public class Validate {
 
         return c;
     }
-
-    public String getAlphabelticStringFromInput(String msg) {
+    
+    public String getStringFromInput(String msg) { //re-enter String till correct format
+        Scanner sc = new Scanner(System.in);
+        String s = null;
+        while (s == null || s.isEmpty()) {
+            System.out.print(String.format("%s", msg));
+            s = sc.nextLine();
+        }
+        return s;
+    }
+    
+    public String inputPattern(String msg, String pattern) { //re-enter input till match pattern
+        Scanner sc = new Scanner(System.in);
+        String data;
+        do {
+            System.out.print(msg);
+            data = sc.nextLine();
+        } while (!data.matches(pattern));
+        return data;
+    }
+    
+    public String getAlphabelticStringFromInput(String msg) { //re-enter input till match format
         Scanner sc = new Scanner(System.in);
         String data;
         do {
@@ -172,15 +126,59 @@ public class Validate {
         } while (!data.matches("[a-zA-Z\\s]{0,30}+$"));
         return data;
     }
-
-    public String inputPattern(String msg, String pattern) {
+    
+    public Date getDateFromInput(String msg) { //re-enter Date till correct format
         Scanner sc = new Scanner(System.in);
-        String data;
-        do {
-            System.out.print(msg);
-            data = sc.nextLine();
-        } while (!data.matches(pattern));
-        return data;
+        while (true) {
+            System.out.print(String.format("Enter %s: ", msg));
+            String dateString = sc.nextLine();
+            if (!dateString.isEmpty()) {
+                try {
+                    Date date = dateFormat.parse(dateString);
+                    return date;
+                } catch (ParseException e) {
+                    System.err.println(String.format("Invalid date format. Please enter again (%s).", DATE_FORMAT));
+                }
+            }
+        }
+    }
+    
+//Another specific
+    
+    public int getIntInRange(String msg, int m, int n) { //re-enter int till in range
+        int number;
+        while (true) {
+            System.out.print(String.format("%s", msg));
+            try {
+                String s = scanner.nextLine();
+                number = Integer.parseInt(s);
+                if (number >= m && number <= n) {
+                    break;
+                }
+            } catch (Exception e) {
+                System.out.println("Enter a number from " + m + " to " + n);
+            }
+        }
+        return number;
+    }
+
+    public int getAgeInRange(String msg) {  //re-enter age till in range
+        Scanner sc = new Scanner(System.in);
+        int number;
+        while (true) {
+            System.out.print(String.format("%s", msg));
+            try {
+                number = sc.nextInt();
+                if (number >= 18 && number <=50) {
+                    return number;
+                } else {
+                    System.err.println("Please enter age in rage 18 to 50!");
+                }
+            } catch (InputMismatchException e) {
+                System.err.println("Just enter age in rage 18 to 50!");
+                sc.next();
+            }
+        }
     }
 
     public int inputPositiveInt(String msg) {
@@ -195,7 +193,7 @@ public class Validate {
                 } else {
                     System.err.println("Please enter the integer number > 0 ");
                 }
-            } catch (InputMismatchException e) {//exception về datatype của đầu vào
+            } catch (InputMismatchException e) {
                 System.err.println("Just input the integer number ");
                 sc.next();
             }
@@ -216,49 +214,13 @@ public class Validate {
                 } else {
                     System.err.println("Please enter the integer number from "+min +" to "+max);
                 }
-            } catch (InputMismatchException e) {//exception về datatype của đầu vào
+            } catch (InputMismatchException e) {
                 System.err.println("Just input the integer number ");
                 sc.next();
             }
         }
     }
-    
-    public int getInt(String promt, int m, int n) {
-        int a = -1;
-        while (true) {
-            System.out.print(promt + ": ");
-            try {
-                String s = scanner.nextLine();
-                a = Integer.parseInt(s);
-                if (a >= m && a <= n) {
-                    break;
-                }
-            } catch (Exception e) {
-                System.out.println("Enter a number from " + m + " to " + n);
-            }
-        }
-        return a;
-    }
-
-    public int getIDFromInput(String msg) {
-        Scanner sc = new Scanner(System.in);
-        int number;
-        while (true) {
-            System.out.print(String.format("%s", msg));
-            try {
-                number = sc.nextInt();
-                if (number >= 0) {
-                    return number;
-                } else {
-                    System.err.println("Please enter the integer number > 0 ");
-                }
-            } catch (InputMismatchException e) {
-                System.err.println("ID is digit ");
-                sc.next();
-            }
-        }
-    }
-    
+  
 //----------------------------------------------------------------------------------------------------------------------   
     // Check if the given ID follows a specific format
         public static boolean checkIdFormat(String id) {
@@ -276,7 +238,7 @@ public class Validate {
                 return false;
             }
         }
-
+        
         // Check if the given input is a valid string
         public static boolean checkString(String input) {
             // Implement your string validation logic here
