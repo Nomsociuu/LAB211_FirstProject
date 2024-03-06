@@ -109,15 +109,16 @@ public class Validate {
     }
 
     //validate some optional
-    final String isValidPhone = "^[0-9]{10}$";
+    final String isPhoneDigit = "[0-9]+";
+    final String isPhoneValid = "\\d{10}";
     final String isValidEmail = "^[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}$";
     public String checkPhone(String phoneCheck) {
         boolean breaker = true;
         while (breaker) {
-            if (!phoneCheck.matches("\\d{10}") && phoneCheck.matches("[0-9]+")) {
+            if (!phoneCheck.matches(isPhoneValid) && phoneCheck.matches(isPhoneDigit)) {
                 System.out.println("Phone number must have 10 digits");
                 phoneCheck = checkString("Enter phone: ");
-            } else if (!phoneCheck.matches("[0-9]+")) {
+            } else if (!phoneCheck.matches(isPhoneDigit)) {
                 System.out.println("Phone number shouldn't contain characters");
                 phoneCheck = checkString("Enter phone: ");
             } else {
@@ -132,7 +133,7 @@ public class Validate {
         boolean breaker = true;
         while (breaker) {
             if (!dateCheck.matches("^(0?[1-9]|[12][0-9]|3[01])/(0?[1-9]|1[0-2])/\\d{4}$")) {
-                System.err.println("Date must be in correct format (dd/MM/yyyy)");
+                System.out.println("Date must be in correct format (dd/MM/yyyy)");
                 dateCheck = checkString("Enter date: ");
             } else {
                 return dateCheck;
@@ -146,7 +147,7 @@ public class Validate {
         boolean breaker = true;
         while (breaker) {
             if (!emailCheck.matches(isValidEmail)) {
-                System.err.println("Email must be correct format");
+                System.out.println("Email must be correct format");
                 emailCheck = checkString("Enter email: ");
             } else {
                 return emailCheck;
@@ -154,5 +155,4 @@ public class Validate {
         }
         return emailCheck;
     }
-
 }
