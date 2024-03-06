@@ -2,7 +2,6 @@ package Controller;
 
 import View.Menu;
 import Common.Algo;
-//import Model.x;
 
 public class MainController extends Menu {
 
