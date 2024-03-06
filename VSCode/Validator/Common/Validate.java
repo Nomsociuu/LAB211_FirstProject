@@ -1,5 +1,6 @@
 package Validator.Common;
 
+import Validator.Model.*;
 import java.util.*;
 
 public class Validate {
@@ -109,15 +110,16 @@ public class Validate {
     }
 
     //validate some optional
-    final String isValidPhone = "^[0-9]{10}$";
+    final String isPhoneDigit = "[0-9]+";
+    final String isPhoneValid = "\\d{10}";
     final String isValidEmail = "^[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}$";
     public String checkPhone(String phoneCheck) {
         boolean breaker = true;
         while (breaker) {
-            if (!phoneCheck.matches("\\d{10}") && phoneCheck.matches("[0-9]+")) {
+            if (!phoneCheck.matches(isPhoneValid) && phoneCheck.matches(isPhoneDigit)) {
                 System.out.println("Phone number must have 10 digits");
                 phoneCheck = checkString("Enter phone: ");
-            } else if (!phoneCheck.matches("[0-9]+")) {
+            } else if (!phoneCheck.matches(isPhoneDigit)) {
                 System.out.println("Phone number shouldn't contain characters");
                 phoneCheck = checkString("Enter phone: ");
             } else {
@@ -154,5 +156,4 @@ public class Validate {
         }
         return emailCheck;
     }
-
 }

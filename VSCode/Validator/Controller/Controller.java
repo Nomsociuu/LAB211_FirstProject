@@ -16,7 +16,7 @@ public class Controller {
     }
 
     public void display(Model model) {
-        System.out.println("\n-------DATA FORMAT-------");
+        System.out.println("-------DATA FORMAT-------");
         System.out.println("Phone: " + model.getPhone());
         System.out.println("Email: " + model.getEmail());
         System.out.println("Date: " + model.getDate());
