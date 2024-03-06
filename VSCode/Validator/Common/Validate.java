@@ -134,7 +134,7 @@ public class Validate {
         boolean breaker = true;
         while (breaker) {
             if (!dateCheck.matches("^(0?[1-9]|[12][0-9]|3[01])/(0?[1-9]|1[0-2])/\\d{4}$")) {
-                System.err.println("Date must be in correct format (dd/MM/yyyy)");
+                System.out.println("Date must be in correct format (dd/MM/yyyy)");
                 dateCheck = checkString("Enter date: ");
             } else {
                 return dateCheck;
@@ -148,7 +148,7 @@ public class Validate {
         boolean breaker = true;
         while (breaker) {
             if (!emailCheck.matches(isValidEmail)) {
-                System.err.println("Email must be correct format");
+                System.out.println("Email must be correct format");
                 emailCheck = checkString("Enter email: ");
             } else {
                 return emailCheck;
