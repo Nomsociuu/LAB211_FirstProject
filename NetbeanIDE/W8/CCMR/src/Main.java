@@ -7,4 +7,3 @@ public class Main {
         cont.run();
     }
 }
-//thieu func viet try-catch ngoai controller

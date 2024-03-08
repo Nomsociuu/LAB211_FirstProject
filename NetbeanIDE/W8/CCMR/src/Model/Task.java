@@ -1,11 +1,12 @@
 package Model;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Task {
 
     //Attributes
-    private int TaskTypeID, id;
+    private int TaskTypeID,id;
     private double PlanTo, PlanFrom;
     private String RequirementName, Assignee, Reviewer;
     private Date Date;
@@ -13,9 +14,9 @@ public class Task {
     public Task() {
     }
 
-    public Task(int id, String RequirementName, String Assignee, String Reviewer, int TaskTypeID, Date Date, double PlanTo, double PlanFrom) {
-        this.TaskTypeID = TaskTypeID;
+    public Task(int id, int TaskTypeID, String RequirementName, String Assignee, String Reviewer, Date Date, double PlanTo, double PlanFrom) {
         this.id = id;
+        this.TaskTypeID = TaskTypeID;
         this.PlanTo = PlanTo;
         this.PlanFrom = PlanFrom;
         this.RequirementName = RequirementName;
@@ -24,20 +25,20 @@ public class Task {
         this.Date = Date;
     }
 
-    public int getTaskTypeID() {
-        return TaskTypeID;
-    }
-
-    public void setTaskTypeID(int TaskTypeID) {
-        this.TaskTypeID = TaskTypeID;
-    }
-
     public int getId() {
         return id;
     }
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getTaskTypeID() {
+        return TaskTypeID;
+    }
+
+    public void setTaskTypeID(int TaskTypeID) {
+        this.TaskTypeID = TaskTypeID;
     }
 
     public double getPlanTo() {
@@ -88,13 +89,27 @@ public class Task {
         this.Date = Date;
     }
 
+    private String getTaskType() {
+        switch (TaskTypeID) {
+            case 1:
+                return "Code";
+            case 2:
+                return "Test";
+            case 3:
+                return "Design";
+            case 4:
+                return "Review";
+            default:
+                return "Unknown";
+        }
+    }
+
     @Override
     public String toString() {
-        return "Task{" + "TaskTypeID=" + TaskTypeID + ", id=" + id + ", PlanTo=" + PlanTo + ", PlanFrom=" + PlanFrom + ", RequirementName=" + RequirementName + ", Assignee=" + Assignee + ", Reviewer=" + Reviewer + ", Date=" + Date + '}';
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        System.out.println("ID Name		    Task Type	 Date	   Time    Assignee	   Reviewer");
+        return String.format("%-4s %-20s %-12s %-10s %-9.1f %-15s %-10s",
+                id, RequirementName, getTaskType(), dateFormat.format(Date),
+                (PlanFrom - PlanTo), Assignee, Reviewer);
     }
-    
-    
-
-    
-
 }

@@ -211,5 +211,16 @@ public class Validate {
         }
         return func;
     }
+    
+    public void taskInput(int taskTypeId, double planFrom, double planTo) throws Exception {
+        if (taskTypeId < 1 || taskTypeId > 4) {
+            System.out.println("Invalid Task Type. Task Type must be between 1 and 4.");
+        }
+
+        if (planFrom < 8.0 || planTo > 17.5 || planFrom >= planTo) {
+            System.out.println("Invalid time range. Plan From must be before Plan To and between 8.0 and 17.5.");
+        }
+    }
+    
 
 }

@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Algo {
 
@@ -25,18 +26,16 @@ public class Algo {
             String planTo, String assignee, String reviewer) throws Exception {
 
         try {
-            dis.showDetailMenu("Add Task");
-
             int taskTypeId = Integer.parseInt(taskType);
             Date taskDate = new SimpleDateFormat("dd-MM-yyyy").parse(date);
             double from = Double.parseDouble(planFrom);
             double to = Double.parseDouble(planTo);
 
-            validateTaskInput(taskTypeId, from, to);
+            vali.taskInput(taskTypeId, from, to);
 
             lastTaskId++;
 
-            Task task = new Task(lastTaskId, requirementName, assignee, reviewer, taskTypeId, taskDate, from, to);
+            Task task = new Task(lastTaskId, taskTypeId, requirementName, assignee, reviewer, taskDate, from, to);
             tasks.add(task);
 
             return lastTaskId;
@@ -45,18 +44,7 @@ public class Algo {
         }
     }
 
-    private void validateTaskInput(int taskTypeId, double planFrom, double planTo) throws Exception {
-        if (taskTypeId < 1 || taskTypeId > 4) {
-            throw new Exception("Invalid Task Type. Task Type must be between 1 and 4.");
-        }
-
-        if (planFrom < 8.0 || planTo > 17.5 || planFrom >= planTo) {
-            throw new Exception("Invalid time range. Plan From must be before Plan To and between 8.0 and 17.5.");
-        }
-    }
-
-    public void deleteTask(String taskId) {
-
+    public void deleteTask(String taskId) throws Exception {
         try {
             dis.showDetailMenu("Del Task");
             int id = Integer.parseInt(taskId);
@@ -64,15 +52,22 @@ public class Algo {
             tasks.removeIf(task -> task.getId() == id);
 
             System.out.println("Task deleted successfully.");
-        } catch (Exception e) {
-            System.out.println("Error deleting task: " + e.getMessage());
+        } catch (NumberFormatException e) {
+            System.out.println("Error deleting task: Invalid task ID format.");
         }
     }
 
     public List<Task> getDataTasks() {
         dis.showDetailMenu("Task");
-        return tasks.stream()
+
+        List<Task> sortedTasks = tasks.stream()
                 .sorted(Comparator.comparingInt(Task::getId))
-                .collect(ArrayList::new, ArrayList::add, ArrayList::addAll);
+                .collect(Collectors.toList());
+
+        for (Task task : sortedTasks) {
+            System.out.println(task);
+        }
+
+        return sortedTasks;
     }
 }
