@@ -1,8 +1,7 @@
 package Common;
-//Hàm nhập:
 
 import java.util.Scanner;
-
+//Hàm nhập:
 public class Library {
 
     private Scanner sc = new Scanner(System.in);

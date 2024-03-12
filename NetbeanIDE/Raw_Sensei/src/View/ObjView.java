@@ -1,6 +1,11 @@
 
 package View;
 
+import Common.Library;
+import Common.Validate;
+import Model.Obj;
+import java.util.ArrayList;
+
 public class ObjView {
     private Library l = new Library();
     private Validate v = new Validate();
@@ -16,7 +21,7 @@ public class ObjView {
         //Hàm nhận tất cả giá trị của thuộc tính của obj : hàm get để nhập - hàm check để ktra valid - setter để lưu giá trị
         Obj obj = new Obj();
         
-        double a = l.getDouble("Enter a: ");
+        int a = l.getInt("Enter a: ");
         if(!v.checkPositiveNum(a)){
             System.out.println("A must be greater than 0");
             return null;
@@ -27,10 +32,15 @@ public class ObjView {
     }
     
     public void displayObj(ArrayList <Obj> objs ){
-        System.out.println("\nA\nB\nC\nD"); //A,B,C,D là thuộc tính của obj
+        System.out.println("\nA\tB\tC\tD"); //A,B,C,D là thuộc tính của obj
         for ( Obj o : objs ){
-            System.out.println(o.getA()+"\t"+o.getB())+"\t"+o.getC()+"\t"+o.getD());
+            System.out.println(o.getA() + "\t" + o.getB() + "\t" + o.getC() + "\t"+o.getD());
         }
+    }
+    
+    public int getObjbyId(){
+        int id = l.getInt("Enter id to remove: ");
+        return id;
     }
     
     public void displayMessage(String mes){

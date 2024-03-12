@@ -1,6 +1,8 @@
 package Controller;
 
-import Common.*;
+import DAO.ObjDAO;
+import Model.Obj;
+import View.ObjView;
 
 public class ObjController {
 
@@ -14,7 +16,7 @@ public class ObjController {
 
     public void A() {
         Obj obj = view.getObjDetails();
-        if(dao.A(obj)){
+        if(dao.AddObj(obj)){
             view.displayMessage("Obj added succesfully");
         }
         else{

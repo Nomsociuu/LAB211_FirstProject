@@ -1,6 +1,9 @@
 
 package DAO;
 
+import Model.Obj;
+import java.util.ArrayList;
+
 public class ObjDAO {
     private ArrayList<Obj> objs = new ArrayList<>();
     private int nextId = 1;
@@ -18,6 +21,6 @@ public class ObjDAO {
     }
     
     public boolean removeObj(int id){
-        return objs.removeIf(obj->obj.getId()==)
+        return objs.removeIf(obj->obj.getA()==id);
     }
 }
