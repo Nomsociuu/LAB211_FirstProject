@@ -38,6 +38,7 @@ public class ObjView {
         }
     }
     
+    
     public int getObjbyId(){
         int id = l.getInt("Enter id to remove: ");
         return id;
