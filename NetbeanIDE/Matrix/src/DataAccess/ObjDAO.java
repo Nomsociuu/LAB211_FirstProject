@@ -1,5 +1,5 @@
 
-package DAO;
+package DataAccess;
 
 import Model.Obj;
 import java.util.ArrayList;
