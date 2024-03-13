@@ -25,7 +25,7 @@ public class Menu {
         }
         //with locale ( language , country )
         //search for Bundle with name : basename_language_country
-        lang = ResourceBundle.getBundle("LoginSystem.Lang.lang", loc);
+        lang = ResourceBundle.getBundle("Lang.lang", loc);
         this.accountNumber = utils.getStringRegex(this.lang.getString("account"), "^[0-9]{10}$", this.lang.getString("accountError"));
         mods.setAccountNumber(this.accountNumber);
         this.password = utils.getStringRegex(this.lang.getString("password"), "^(?=.*?[0-9])(?=.*[a-zA-Z])[0-9a-zA-Z]{8,31}$", this.lang.getString("passwordError"));
