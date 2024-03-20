@@ -34,7 +34,7 @@ public class ObjView {
     public void displayObj(ArrayList <Obj> objs ){
         System.out.println("\nA\tB\tC\tD"); //A,B,C,D là thuộc tính của obj
         for ( Obj o : objs ){
-            System.out.println(o.getA() + "\t" + o.getB() + "\t" + o.getC() + "\t"+o.getD());
+            System.out.println(o.getA()); //+ "\t" + o.getB() + "\t" + o.getC() + "\t"+o.getD());
         }
     }
     
